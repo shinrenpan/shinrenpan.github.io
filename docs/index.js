@@ -2667,7 +2667,7 @@
         }
     }(), v.getPost = function() {
         var n = h((function*(n) {
-            document.title = "loading", y.stop(0), (0, f.default)() || (m.style.width = 0);
+            document.title = "".concat(t.title), y.stop(0), (0, f.default)() || (m.style.width = 0);
             var t = this.issue[n];
             if (t) g.issue(t);
             else {
