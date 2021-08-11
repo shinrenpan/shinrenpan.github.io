@@ -30,9 +30,5 @@
   export let id;
 </script>
 
-<article
-	contenteditable="true"
-	bind:innerHTML={innerHTML}
-></article>
-
+<article contenteditable="false" bind:innerHTML={innerHTML}></article>
 <Command {id}></Command>
