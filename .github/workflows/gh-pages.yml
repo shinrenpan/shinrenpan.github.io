@@ -17,9 +17,14 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v2
         with:
-          mdbook-version: 'latest'
+          mdbook-version: '0.4.10'
+          # mdbook-version: 'latest'
 
-      - run: mdbook build
+      - name: Install mdbook extensions
+        run: cargo install mdbook-alerts mdbook-pagetoc
+
+      - name: Build mdbook
+        run: mdbook build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
