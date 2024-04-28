@@ -1,0 +1,650 @@
+<!DOCTYPE HTML>
+<html lang="zh_tw" class="light" dir="">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title></title>
+                <meta name="robots" content="noindex">
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+                <link rel="stylesheet" href="theme/pagetoc.css">
+        
+            </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="about_me.html">關於我</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        <a href="https://github.com/shinrenpan" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                                                
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.25em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(154, 103, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+</style>
+<h1 id="關於我"><a class="header" href="#關於我">關於我</a></h1>
+<p>iOS 工程師.
+自 2009 年開發 iOS App, 擁有 <strong>10年</strong> 以上 iOS App 開發經驗.<br />
+開發過的 App 類型:</p>
+<ul>
+<li>購物商城</li>
+<li>聊天軟體</li>
+<li>藍芽 4.0 以上, 或是 iBeacon</li>
+<li>2D 遊戲</li>
+<li>MFI</li>
+<li>影音串流</li>
+<li>音樂串流</li>
+</ul>
+<h2 id="技能"><a class="header" href="#技能">技能</a></h2>
+<h3 id="程式語言"><a class="header" href="#程式語言">程式語言</a></h3>
+<ul>
+<li>Objective-C 2009 ~ now</li>
+<li>Swift 3.0 ~ now</li>
+</ul>
+<h3 id="語言"><a class="header" href="#語言">語言</a></h3>
+<ul>
+<li>中文 (母語)</li>
+<li>英文 (普)</li>
+</ul>
+<h3 id="ios-技能"><a class="header" href="#ios-技能">iOS 技能</a></h3>
+<ul>
+<li>
+<p>Testing</p>
+<ul>
+<li>Unit testing</li>
+<li>UI Testing</li>
+</ul>
+</li>
+<li>
+<p>Custom UI</p>
+<ul>
+<li>Interface Builder</li>
+<li>Storyboard</li>
+<li>Hardcode</li>
+<li>AutoLayout</li>
+<li>Autoresizing</li>
+<li>Core Animation</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SpriteKitFramework_Ref/">SpriteKit</a></li>
+<li><a href="https://developer.apple.com/documentation/swiftui">SwiftUI</a></li>
+</ul>
+</li>
+<li>
+<p>API communication</p>
+<ul>
+<li><del>NSURLConnection</del></li>
+<li>URLSession</li>
+<li>gRPC with <a href="https://github.com/grpc/grpc-swift">grpc-swift</a></li>
+<li>gRPC with <a href="https://github.com/connectrpc/connect-swift">connect-swift</a></li>
+<li>3rd-paryty library (<a href="https://github.com/Alamofire/Alamofire">Alamofire</a>... etc)</li>
+</ul>
+</li>
+<li>
+<p>Instant message</p>
+<ul>
+<li>XMPP with <a href="https://github.com/robbiehanson/XMPPFramework">XMPPFramework</a></li>
+<li>MQTT with <a href="https://github.com/ckrey/MQTT-Client-Framework">MQTT-Client-Framework</a></li>
+<li>Socket with <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSStream_Class/">NSStream</a></li>
+<li>SignalR with <a href="https://github.com/DyKnow/SignalR-ObjC">SignalR-ObjC</a></li>
+<li>Live streaming with <a href="https://github.com/bilibili/ijkplayer">ijkplayer</a>, <a href="https://github.com/shogo4405/HaishinKit.swift">HaishinKit</a>, <a href="https://developer.apple.com/documentation/replaykit">ReplayKit</a></li>
+<li>VOIP</li>
+</ul>
+</li>
+<li>
+<p>Database</p>
+<ul>
+<li>CoreData</li>
+<li><a href="https://github.com/ccgus/fmdb">fmdb</a></li>
+<li><a href="https://realm.io">Realm</a></li>
+<li>NSKeyedArchiver / NSkeyedUnarchiver</li>
+<li>Plist</li>
+<li>NSUserDefaults</li>
+<li>KeyChain</li>
+</ul>
+</li>
+<li>
+<p>BlueTooth</p>
+<ul>
+<li>BLE 4.0 or iBeacon</li>
+</ul>
+</li>
+<li>
+<p>Gaming</p>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SpriteKitFramework_Ref/">SpriteKit</a> for 2D game</li>
+</ul>
+</li>
+<li>
+<p>Version control</p>
+<ul>
+<li>Git</li>
+</ul>
+</li>
+<li>
+<p>CI / CD</p>
+<ul>
+<li><a href="https://jenkins.io">Jenkins</a></li>
+<li><a href="https://fastlane.tools">Fastlane</a></li>
+<li><a href="https://travis-ci.org">Travis CI</a></li>
+<li>Xcode server bots</li>
+</ul>
+</li>
+<li>
+<p>3rd-party managment</p>
+<ul>
+<li><a href="https://github.com/Carthage/Carthage">Carthage</a></li>
+<li><a href="https://cocoapods.org">CocoaPods</a></li>
+<li><a href="https://www.swift.org/package-manager/">Swift-Package-Manager</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="工作經歷"><a class="header" href="#工作經歷">工作經歷</a></h2>
+<h3 id="皆凱科技"><a class="header" href="#皆凱科技">皆凱科技</a></h3>
+<h4 id="ios-工程師-202309--now"><a class="header" href="#ios-工程師-202309--now">iOS 工程師 2023/09 ~ now</a></h4>
+<p>開發與維護公司 <a href="https://apps.apple.com/tw/app/id6467499244">金田GT</a> App, 參考<a href="https://youtu.be/Rh_pZrOLsh0">影片</a>.</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Swift 開發維護 App, 並與 3rd-party Objective-C 混編.</li>
+<li>使用 <a href="https://github.com/shinrenpan/Note/discussions/27">MVVVR</a> 架構開發.</li>
+<li>導入 <a href="https://github.com/yonaskolb/XcodeGen">XcodeGen</a> 管理 Project.</li>
+<li>實作 App 審核時, 隱藏 UI 功能.</li>
+<li>客製化 UI.</li>
+<li>使用 gRPC 介接資料.</li>
+<li>使用 Jenkins + fastlane 實作簡易 CI / CD.</li>
+<li>使用 Firebase 分發 dev / qat 環境 App.</li>
+<li>撰寫 Script 切換 dev / qat / production 環境.</li>
+<li>導入 Xcode 15 新功能 <a href="https://sarunw.com/posts/swift-symbols-for-asset-catalog/">Asset symbol generation</a>.</li>
+<li>HTML5 網站與 app 交互.</li>
+<li>使用 SPM / cocoapod 管理套件.</li>
+</ul>
+<h3 id="恒遠科技"><a class="header" href="#恒遠科技">恒遠科技</a></h3>
+<h4 id="ios-工程師-202204--202307"><a class="header" href="#ios-工程師-202204--202307">iOS 工程師 2022/04 ~ 2023/07</a></h4>
+<p>開發與維護公司超級簽 App, 參考<a href="https://youtu.be/vgyh0lbtPYY">影片</a></p>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>使用手機錄影, 長短影片功能無法正常顯示.</p>
+</div>
+<p>App 內容包含:</p>
+<ul>
+<li>短影音</li>
+<li>長影音</li>
+<li>漫畫</li>
+<li>小說</li>
+<li>遊戲</li>
+<li>直播</li>
+<li>聊天</li>
+</ul>
+<p>工作內容:</p>
+<ul>
+<li>接手大陸同事 Objective-C 專案, 並維護.</li>
+<li>使用 Swift 開發新功能, 與 Objective-C 混編.</li>
+<li>導入 <a href="https://github.com/yonaskolb/XcodeGen">XcodeGen</a> 管理 Project.</li>
+<li>主導專案由 Objective-C 逐漸轉換成 Swift.</li>
+<li>導入 <a href="https://github.com/shinrenpan/Note/discussions/27">MVVVR</a> 架構開發.</li>
+<li>移除常年不維護第三方套件, 使用原生 API 替代.</li>
+<li>移除使用 <a href="https://github.com/swisspol/GCDWebServer">GCDWebServer</a> 播放本地端 m3u8, 使用原生 API 替代, <a href="https://github.com/shinrenpan/Note/discussions/6">參考1</a>.</li>
+<li>撰寫 Script 切換環境.</li>
+<li>實作漫畫閱讀器.</li>
+<li>實作小說閱讀器.</li>
+<li>遊戲 Web 與 App 交互.</li>
+<li>導入合作方直播套件.</li>
+<li>與超級簽廠商溝通.</li>
+</ul>
+<h3 id="遊戲橘子集團"><a class="header" href="#遊戲橘子集團">遊戲橘子集團</a></h3>
+<h4 id="ios-約聘工程師-201906--202202"><a class="header" href="#ios-約聘工程師-201906--202202">iOS 約聘工程師 2019/06 ~ 2022/02</a></h4>
+<p>開發與維護 <a href="https://apps.apple.com/tw/app/beanfun/id1108282446">BeanFun</a> App.</p>
+<p>工作內容:</p>
+<ul>
+<li>與主管及同事, 導入 <a href="https://clean-swift.com/">Clean Swift</a> 架構.</li>
+<li>修正 Objective-C 既有 bug, 並使用 Swift 重構.</li>
+<li>使用 Swift 開發新功能, 與 Objective-C 混編.</li>
+<li>實作大量 WebView 與 App 交互</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>透過雙子數位科技於與遊戲橘子簽約.</p>
+</div>
+<h4 id="ios-約聘工程師-201809--201903"><a class="header" href="#ios-約聘工程師-201809--201903">iOS 約聘工程師 2018/09 ~ 2019/03</a></h4>
+<p>開發與維護 In-House 專案管理 App.</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 開發與維護 App</li>
+<li>透過 <a href="https://github.com/ccgus/fmdb">fmdb</a> 暫存 API 資料, 達到離線使用.</li>
+<li>實作圖片暫存機制, 本地端有圖片就先使用, 沒有的話, 先下載縮圖呈現在畫面, 之後再下載原圖.</li>
+</ul>
+<p>維護企業內部專案管理 App 期間, 集團 CEO 至南極挑戰,<br />
+故此 App 必須調教到 CEO 能在南極使用.</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>透過干城數碼與遊戲橘子簽約.</p>
+</div>
+<h3 id="緯創軟體"><a class="header" href="#緯創軟體">緯創軟體</a></h3>
+<h4 id="ios-工程-201608--201803"><a class="header" href="#ios-工程-201608--201803">iOS 工程 2016/08 ~ 2018/03</a></h4>
+<p>開發與維護 <a href="https://itunes.apple.com/tw/app/id432046643">國泰人壽</a> App</p>
+<p>工作內容:</p>
+<ul>
+<li>維護現有 App bug, 並開發新功能, 使用 Objective-C</li>
+<li>逐漸汰換 Objective-C, 使用 Swift 重構</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>駐點內湖國泰人壽.</p>
+</div>
+<h3 id="和特資訊"><a class="header" href="#和特資訊">和特資訊</a></h3>
+<h4 id="ios-工程師-201603--201606"><a class="header" href="#ios-工程師-201603--201606">iOS 工程師 2016/03 ~ 2016/06</a></h4>
+<p>開發飯店內部管理系統 App .</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 實作開發.</li>
+<li>基於 <a href="https://www.asp.net/signalr">SignalR</a> 開發聊天功能.</li>
+<li>實作限制地點打卡功能</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>公司缺發資金, 最後未發佈 App.</p>
+</div>
+<h3 id="互聯網行動科技"><a class="header" href="#互聯網行動科技">互聯網行動科技</a></h3>
+<h4 id="ios-工程師-201504--201601"><a class="header" href="#ios-工程師-201504--201601">iOS 工程師 2015/04 ~ 2016/01</a></h4>
+<p>開發與實作老闆發想的 App.</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 實作開發.</li>
+<li>基於 <a href="https://xmpp.org">XMPP</a> 開發聊天功能</li>
+<li>基於 <a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SpriteKitFramework_Ref/">SpriteKit</a> 開發遊戲功能.</li>
+<li>實作購物商城功能.</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>公司找不到定位, 最後未發佈 App.</p>
+</div>
+<h3 id="pipimy"><a class="header" href="#pipimy">PiPiMy</a></h3>
+<h4 id="ios-工程師-objective-c-201501--201503"><a class="header" href="#ios-工程師-objective-c-201501--201503">iOS 工程師 (Objective-C) 2015/01 ~ 2015/03</a></h4>
+<p>開發 <del><a href="https://itunes.apple.com/app/id1049599582">行動拍拍賣</a></del> Beta 版本</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 實作開發.</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>公司主管無法溝通, 故開發完 Beta 版本離職.</p>
+</div>
+<h3 id="時間軸科技"><a class="header" href="#時間軸科技">時間軸科技</a></h3>
+<h4 id="ios-工程師-201309--201406"><a class="header" href="#ios-工程師-201309--201406">iOS 工程師 2013/09 ~ 2014/06</a></h4>
+<p>開發套版類型 App 機制, 類似今日的 [91 App].</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 實作開發.</li>
+<li>開發套版類型 App 架構.</li>
+<li>與後端同事討論如何使用套版機制.</li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>公司被遠傳併購後, 產品未能上線.</p>
+</div>
+<h4 id="ios-工程師-201205--201208"><a class="header" href="#ios-工程師-201205--201208">iOS 工程師 2012/05 ~ 2012/08</a></h4>
+<p>開發 <a href="https://itunes.apple.com/tw/app/%E5%B7%B7%E5%BC%84-%E7%BE%8E%E9%A3%9F%E9%A4%90%E5%BB%B3%E5%8D%8A%E5%83%B9%E5%84%AA%E6%83%A0/id551945238?mt=8">巷弄</a> 第一版</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 實作開發.</li>
+<li>Memory management (期間 ARC 剛發佈).</li>
+<li>使用 Xcode Instruments 檢測 Memory leak 與其他事項.</li>
+<li>汰換 AutoResizing 使用 AutoLayout 取代 (期間 AutoLayout 發佈不久).</li>
+<li>Cell 越來越多層, 使用 layer 與多執行緒來達到 UITableView 滾動時的順暢.</li>
+</ul>
+<h3 id="jamzoo"><a class="header" href="#jamzoo">JamZoo</a></h3>
+<h4 id="ios-工程師-201211--201306"><a class="header" href="#ios-工程師-201211--201306">iOS 工程師 2012/11 ~ 2013/06</a></h4>
+<p>接案公司, 開發大量 App.</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 實作開發.</li>
+<li>重構 <a href="https://itunes.apple.com/tw/app/%E5%96%AE%E8%BA%AB%E9%8A%80%E8%A1%8C-%E5%AF%A6%E5%90%8D%E5%88%B6-%E6%9C%AA%E5%A9%9A%E8%BA%AB%E4%BB%BD%E8%AA%8D%E8%AD%89/id672623637?mt=8">單身銀行</a> 聊天機制, 使用 <a href="http://mqtt.org">MQTT</a> 替代 Long Polling.</li>
+<li>研究其他聊天機制, 例如 <a href="https://xmpp.org">XMPP</a>, Socket.</li>
+<li>開發租車業者 In-House App, 並實作離線功能, <a href="https://www.youtube.com/watch?v=aail3KJdb4c">參考2</a>.</li>
+<li>開發美髮業者 In-House App.</li>
+<li>與工研院同事合作基於 HTML5 電子書瀏覽器 App, 並使用 UIWebVIew 與 App 互通.</li>
+</ul>
+<h3 id="汎美達電信"><a class="header" href="#汎美達電信">汎美達電信</a></h3>
+<h4 id="ios-工程師-201009--201202"><a class="header" href="#ios-工程師-201009--201202">iOS 工程師 2010/09 ~ 2012/02</a></h4>
+<p>接案公司, 開發大量 App.</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 實作開發.</li>
+<li>透過 NSURLConnection 與 api 介接取得資料</li>
+<li>透過 Media Player Framework 實作媒體 App, <a href="https://www.youtube.com/watch?v=Unv4XT5EjNI">參考3</a></li>
+<li>使用 UIKit 製作小遊戲功能, <a href="https://www.youtube.com/watch?v=fLPyCJoCQWY">參考4</a>, <a href="https://www.youtube.com/watch?v=khn3skxDjls">參考5</a></li>
+<li>實作 Core Location App, 與下載 App Skin 功能, <a href="https://www.youtube.com/watch?v=197C74y68Oo">參考6</a></li>
+<li>實作其他未接觸功能, 例如 SQLite, BLE...</li>
+</ul>
+<h3 id="旭揚半導體"><a class="header" href="#旭揚半導體">旭揚半導體</a></h3>
+<h4 id="ios-工程師-201003--201007"><a class="header" href="#ios-工程師-201003--201007">iOS 工程師 2010/03 ~ 2010/07</a></h4>
+<p>開發與維護 App, <a href="https://www.youtube.com/watch?v=ZVgwwkCCrUQ">參考7</a>.</p>
+<p>工作內容:</p>
+<ul>
+<li>使用 Objective-C 實作開發.</li>
+<li>使用 UIKit, Foundation Framework 實作 App 功能.</li>
+</ul>
+<p>公司主要產品為 <a href="https://en.wikipedia.org/wiki/Digital_Audio_Broadcasting">DAB</a> 數位廣播晶片, 並開發帶有 DAB 晶片的手機殼, 透過 UART 讓 iPhone 可以收聽 DAB,<br />
+故一併學習了 <a href="https://developer.apple.com/documentation/externalaccessory">External Accessory Framework</a>.</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>第一份 iOS 工作, 第一次接觸 UIKit</p>
+</div>
+<h2 id="學歷"><a class="header" href="#學歷">學歷</a></h2>
+<h3 id="資策會數位-數位內容學院"><a class="header" href="#資策會數位-數位內容學院">資策會數位-數位內容學院</a></h3>
+<p>iOS 學習階段2009 (六個月)</p>
+<p>學習內容:</p>
+<ul>
+<li>學習 Objective-C 基礎</li>
+<li>學習 <a href="https://zh.wikipedia.org/wiki/Cocos2d">cocos2d for iPhone</a></li>
+</ul>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<ol>
+<li>結業時與其他兩位學院同學一起使用 <a href="https://zh.wikipedia.org/wiki/Cocos2d">cocos2d for iPhone</a> 開發出擋十個音樂節奏遊戲,<br />
+拿下 2009 數位內容係列競賽手機遊戲創作組金獎.</li>
+<li>與學院同學結業後, 接案開發音樂 App, <a href="https://youtu.be/npV4b-Z9A4w?t=177">參考8</a></li>
+</ol>
+</div>
+<h3 id="朝陽科技大學"><a class="header" href="#朝陽科技大學">朝陽科技大學</a></h3>
+<p>資訊管理系畢業</p>
+<h3 id="高苑專校"><a class="header" href="#高苑專校">高苑專校</a></h3>
+<p>五專電子工程科畢業</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script>
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+        
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+                <script src="theme/pagetoc.js"></script>
+        
+                        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+                
+    </div>
+    </body>
+</html>
