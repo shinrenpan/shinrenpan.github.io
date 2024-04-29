@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>MVVVR Template</title>
+        <title>顯示超過 5 個 TabBarItem</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item affix "><a href="../about_me.html">關於我</a></li><li class="chapter-item affix "><li class="part-title">iOS 開發筆記</li><li class="chapter-item "><a href="../project/index.html"><strong aria-hidden="true">1.</strong> Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/01.html"><strong aria-hidden="true">1.1.</strong> MVVVR 架構</a></li><li class="chapter-item "><a href="../project/02.html"><strong aria-hidden="true">1.2.</strong> WebParser</a></li></ol></li><li class="chapter-item expanded "><a href="../xcode/index.html"><strong aria-hidden="true">2.</strong> Xcode</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../xcode/01.html" class="active"><strong aria-hidden="true">2.1.</strong> MVVVR Template</a></li><li class="chapter-item "><a href="../xcode/02.html"><strong aria-hidden="true">2.2.</strong> AppDelegate Template</a></li><li class="chapter-item "><a href="../xcode/03.html"><strong aria-hidden="true">2.3.</strong> Swift Empty File Template</a></li></ol></li><li class="chapter-item "><a href="../uitabbarcontroller/index.html"><strong aria-hidden="true">3.</strong> UITabBarController</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../uitabbarcontroller/01.html"><strong aria-hidden="true">3.1.</strong> 顯示超過 5 個 TabBarItem</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item affix "><a href="../about_me.html">關於我</a></li><li class="chapter-item affix "><li class="part-title">iOS 開發筆記</li><li class="chapter-item "><a href="../project/index.html"><strong aria-hidden="true">1.</strong> Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/01.html"><strong aria-hidden="true">1.1.</strong> MVVVR 架構</a></li><li class="chapter-item "><a href="../project/02.html"><strong aria-hidden="true">1.2.</strong> WebParser</a></li></ol></li><li class="chapter-item "><a href="../xcode/index.html"><strong aria-hidden="true">2.</strong> Xcode</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../xcode/01.html"><strong aria-hidden="true">2.1.</strong> MVVVR Template</a></li><li class="chapter-item "><a href="../xcode/02.html"><strong aria-hidden="true">2.2.</strong> AppDelegate Template</a></li><li class="chapter-item "><a href="../xcode/03.html"><strong aria-hidden="true">2.3.</strong> Swift Empty File Template</a></li></ol></li><li class="chapter-item expanded "><a href="../uitabbarcontroller/index.html"><strong aria-hidden="true">3.</strong> UITabBarController</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../uitabbarcontroller/01.html" class="active"><strong aria-hidden="true">3.1.</strong> 顯示超過 5 個 TabBarItem</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -244,28 +244,62 @@
 }
 
 </style>
-<p>Title: MVVVR Template<br />
-Tags: <a href="index.html">#Xcode</a>, <a href="../project/index.html">#MyProject</a></p>
+<p>Title: UITabBarController 顯示超過 5 個 TabBarItem<br />
+Tags: <a href="index.html">#UITabBarController</a></p>
 <h2 id="前言"><a class="header" href="#前言">前言</a></h2>
-<p>基於 <a href="../project/01.html">MVVVR</a> 架構創建的 Xcode Templabe</p>
-<h2 id="使用方法"><a class="header" href="#使用方法">使用方法</a></h2>
-<p>下載 <a href="https://github.com/shinrenpan/MVVVR-Template/releases/latest/">最新版本</a>, 解壓縮後將 <code>MVVVR.xctemplate</code> 移動到目錄之下, 如果目錄不存在, 請自行創建.</p>
-<pre><code>~/Library/Developer/Xcode/Templates
+<p>一般來說, 官方的 UITabBarController 在 iOS 最多只會呈現 5 個 Tab, 雖然已經跟 PM 及美術提過可能會違反 Apple 的 <a href="https://developer.apple.com/design/human-interface-guidelines/tab-bars">Human Interface Guidelines</a>, 但是之前一部分上班的公司, 堅持想要超過 5 個 Tab.</p>
+<p>這裡用最簡單的方法來實現這個功能, 不過不建議這樣做, 因為:<br />
+第一, 這不是官方提供的正確 api.<br />
+第二, 根據 Apple 的 <a href="https://developer.apple.com/design/human-interface-guidelines/tab-bars">Human Interface Guidelines</a>, Apple 可能用會用這個條款 reject app.</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>Use the minimum number of tabs required to help people navigate your app. Each additional tab increases the complexity of your app, making it harder for people to locate information. Aim for a few tabs with short titles or icons to avoid crowding and causing labels to truncate. In general, use up to <strong>five tabs in iOS</strong> and up to six in visionOS, iPadOS, and tvOS.</p>
+</div>
+<h2 id="實作"><a class="header" href="#實作">實作</a></h2>
+<p>實作一個繼承 UITabBarController 的客製化 ViewController, 並 override 以下 functions. 重點在於 <code>override var traitCollection: UITraitCollection</code>, 就那麼簡單.</p>
+<p>但是 UITraitCollection(traitsFrom:) 已經在 iOS 17.0 deprecated, 且在 Xcode console 會看到以下警告訊息, 所以最好不要使用這種方法.</p>
+<pre><code>overrides the -traitCollection getter, which is not supported.
+If you're trying to override traits, you must use the appropriate API
 </code></pre>
-<p>開啟 Xcode -&gt; New File, 滑動到最下方, 就會找到 Template, 然後創建 MVVVR 模組.</p>
-<p><img src="https://raw.githubusercontent.com/shinrenpan/MVVVR-Template/main/images/1.png" alt="" /></p>
+<p>最好自己實作一個類似 UITabBarController 的 Container, 雖然還是有機率被 Apple 以違反 <a href="https://developer.apple.com/design/human-interface-guidelines/tab-bars">Human Interface Guidelines</a> reject.</p>
+<pre><code class="language-swift">override var traitCollection: UITraitCollection {
+     let realTraits = super.traitCollection
+     // 使用假的 traitCollection 來讓 iPhone 可以塞超過 5 個
+     let fakeTraits = UITraitCollection(horizontalSizeClass: .regular)
+
+     return UITraitCollection(traitsFrom: [realTraits, fakeTraits])
+ }
+
+ // 下方三個 function 沒有 override 的話,
+ // Present 一個整頁 UIViewController, dismiss 後會變成 5 個 Tab + More 模式
+ override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+     // 不做任何事
+ }
+
+ override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+     // 不做任何事
+ }
+
+ override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+     // 不做任何事
+ }
+</code></pre>
+<p>最後實作呈現</p>
+<img src="https://raw.githubusercontent.com/shinrenpan/tabarcontroller-more-5-tab/main/images/1.png" alt="image" width="375" height="auto">
+<h2 id="demo"><a class="header" href="#demo">Demo</a></h2>
+<p><a href="https://github.com/shinrenpan/tabarcontroller-more-5-tab">Github</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../xcode/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../uitabbarcontroller/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../xcode/02.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -273,13 +307,10 @@ Tags: <a href="index.html">#Xcode</a>, <a href="../project/index.html">#MyProjec
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../xcode/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../uitabbarcontroller/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../xcode/02.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
