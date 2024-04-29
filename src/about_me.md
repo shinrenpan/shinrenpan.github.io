@@ -122,7 +122,7 @@ iOS 工程師.
 
 開發與維護公司超級簽 App, 參考[影片](https://youtu.be/vgyh0lbtPYY)
 
-> [!TIP]  
+> [!NOTE]  
 > 使用手機錄影, 長短影片功能無法正常顯示.
 
 App 內容包含:
