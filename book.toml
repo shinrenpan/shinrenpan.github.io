@@ -10,9 +10,12 @@ build-dir = "book"
 
 [preprocessor.alerts]
 [preprocessor.pagetoc]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
 [output.html]
 additional-css = ["theme/pagetoc.css"]
-additional-js  = ["theme/pagetoc.js"]
+additional-js  = ["theme/pagetoc.js", "theme/mermaid.min.js", "theme/mermaid-init.js"]
 git-repository-url = "https://github.com/shinrenpan"
 git-repository-icon = "fa-github"
 #no-section-label = true
