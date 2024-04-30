@@ -213,6 +213,21 @@
                 <div id="content" class="content">
                     <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
                         {{{ content }}}
+                        {{#if (eq chapter_title "留言區")}}
+                            <script src="https://giscus.app/client.js"
+                                data-repo="shinrenpan/shinrenpan.github.io"
+                                data-repo-id="R_kgDOL0c7oA"
+                                data-mapping="number"
+                                data-term="2"
+                                data-reactions-enabled="0"
+                                data-emit-metadata="0"
+                                data-input-position="top"
+                                data-theme="preferred_color_scheme"
+                                data-lang="zh-TW"
+                                crossorigin="anonymous"
+                                async>
+                            </script>
+                        {{/if}}
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
