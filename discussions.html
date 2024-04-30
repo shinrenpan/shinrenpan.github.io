@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>WebParser</title>
+        <title>留言區</title>
 
 
         <!-- Custom HTML head -->
@@ -12,31 +12,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/pagetoc.css">
+        <link rel="stylesheet" href="theme/pagetoc.css">
 
     </head>
     <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "../";
+            var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item affix "><a href="../about_me.html">關於我</a></li><li class="chapter-item affix "><li class="part-title">iOS 開發筆記</li><li class="chapter-item expanded "><a href="../project/index.html"><strong aria-hidden="true">1.</strong> Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/01.html"><strong aria-hidden="true">1.1.</strong> MVVVR 架構</a></li><li class="chapter-item expanded "><a href="../project/02.html" class="active"><strong aria-hidden="true">1.2.</strong> WebParser</a></li></ol></li><li class="chapter-item "><a href="../xcode/index.html"><strong aria-hidden="true">2.</strong> Xcode</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../xcode/01.html"><strong aria-hidden="true">2.1.</strong> MVVVR Template</a></li><li class="chapter-item "><a href="../xcode/02.html"><strong aria-hidden="true">2.2.</strong> AppDelegate Template</a></li><li class="chapter-item "><a href="../xcode/03.html"><strong aria-hidden="true">2.3.</strong> Swift Empty File Template</a></li></ol></li><li class="chapter-item "><a href="../uitabbarcontroller/index.html"><strong aria-hidden="true">3.</strong> UITabBarController</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../uitabbarcontroller/01.html"><strong aria-hidden="true">3.1.</strong> 顯示超過 5 個 TabBarItem</a></li></ol></li><li class="chapter-item "><a href="../discussions.html">留言區</a></li></ol>
+                <ol class="chapter"><li class="chapter-item affix "><a href="about_me.html">關於我</a></li><li class="chapter-item affix "><li class="part-title">iOS 開發筆記</li><li class="chapter-item "><a href="project/index.html"><strong aria-hidden="true">1.</strong> Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="project/01.html"><strong aria-hidden="true">1.1.</strong> MVVVR 架構</a></li><li class="chapter-item "><a href="project/02.html"><strong aria-hidden="true">1.2.</strong> WebParser</a></li></ol></li><li class="chapter-item "><a href="xcode/index.html"><strong aria-hidden="true">2.</strong> Xcode</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="xcode/01.html"><strong aria-hidden="true">2.1.</strong> MVVVR Template</a></li><li class="chapter-item "><a href="xcode/02.html"><strong aria-hidden="true">2.2.</strong> AppDelegate Template</a></li><li class="chapter-item "><a href="xcode/03.html"><strong aria-hidden="true">2.3.</strong> Swift Empty File Template</a></li></ol></li><li class="chapter-item "><a href="uitabbarcontroller/index.html"><strong aria-hidden="true">3.</strong> UITabBarController</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="uitabbarcontroller/01.html"><strong aria-hidden="true">3.1.</strong> 顯示超過 5 個 TabBarItem</a></li></ol></li><li class="chapter-item "><a href="discussions.html" class="active">留言區</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -145,7 +145,7 @@
                     <h1 class="menu-title"></h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/shinrenpan" title="Git repository" aria-label="Git repository">
@@ -244,37 +244,16 @@
 }
 
 </style>
-<p>Title: WebParser<br />
-Tags: <a href="index.html">#MyProject</a></p>
-<h2 id="前言"><a class="header" href="#前言">前言</a></h2>
-<p><img src="https://img.shields.io/badge/Swift-5.8-blue" alt="" /> <img src="https://img.shields.io/badge/iOS-13.0-blue" alt="" /></p>
-<p>開發 iOS app 最重要的莫過於 app 的內容, 一般公司會由 backend 提供 api 讀取所需的內容, 甚至有專職員工上架所需內容.</p>
-<p>對於個人 iOS app 開發人員, 可以透過免費 BaaS 簡單實現所需 api, 或是自己使用其他程式語言架構自己的 api service, 所以 api 這塊相對的比較簡單, 困難的在內容怎麼來.</p>
-<p>於是開發了 <a href="https://github.com/shinrenpan/WebParser">WebParser</a> 這個 Framework.</p>
-<p>只要 Safari 可以打開的網頁, 就可以透過 javascript 獲取內容, 解決了架設 api service 與取得內容的困難度.</p>
-<div class="mdbook-alerts mdbook-alerts-warning">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  warning
-</p>
-<p>此 Project 僅提供獲取內容, 請勿用於違法行為.</p>
-</div>
-<h2 id="安裝與使用"><a class="header" href="#安裝與使用">安裝與使用</a></h2>
-<p>透過 SPM 安裝.</p>
-<h2 id="使用"><a class="header" href="#使用">使用</a></h2>
-<p>使用方法詳見 <a href="https://github.com/shinrenpan/webparser-demo">Demo</a>.</p>
+<h1 id="留言區"><a class="header" href="#留言區">留言區</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../project/01.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="uitabbarcontroller/01.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../xcode/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -282,13 +261,10 @@ Tags: <a href="index.html">#MyProject</a></p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../project/01.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="uitabbarcontroller/01.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../xcode/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
@@ -301,18 +277,18 @@ Tags: <a href="index.html">#MyProject</a></p>
         </script>
 
 
-        <script src="../elasticlunr.min.js"></script>
-        <script src="../mark.min.js"></script>
-        <script src="../searcher.js"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="../clipboard.min.js"></script>
-        <script src="../highlight.js"></script>
-        <script src="../book.js"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/pagetoc.js"></script>
-        <script src="../theme/mermaid.min.js"></script>
-        <script src="../theme/mermaid-init.js"></script>
+        <script src="theme/pagetoc.js"></script>
+        <script src="theme/mermaid.min.js"></script>
+        <script src="theme/mermaid-init.js"></script>
 
 
     </div>
