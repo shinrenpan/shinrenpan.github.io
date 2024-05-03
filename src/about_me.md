@@ -97,7 +97,7 @@ iOS 工程師.
 
 ### 皆凱科技
 
-#### iOS 工程師 2023/09 ~ now
+#### iOS 工程師 2023/09 ~ Now
 
 開發與維護公司 [金田GT](https://apps.apple.com/tw/app/id6467499244) App, 參考[影片](https://youtu.be/Rh_pZrOLsh0).
 
@@ -115,6 +115,13 @@ iOS 工程師.
 - 導入 Xcode 15 新功能 [Asset symbol generation](https://sarunw.com/posts/swift-symbols-for-asset-catalog/).
 - HTML5 網站與 app 交互.
 - 使用 SPM / cocoapod 管理套件.
+
+基於 [Tinode](https://github.com/tinode) 開發 IM 軟體
+
+工作內容:
+
+- 將 iOS Client 從 MVC + Storyboard 改為 MVVVR 架構. 原本 MVC + Storyboard 要客製化 UI 較為困難, 故改為 MVVVR 架構.
+- 學習 golang 並研讀 Server 端程式碼. 公司目前沒有 golang 人力, 故要求 Client 端人員學習 golang.
 
 ### 恒遠科技
 
