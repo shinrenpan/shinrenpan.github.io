@@ -120,7 +120,7 @@ iOS 工程師.
 
 工作內容:
 
-- 將 iOS Client 從 MVC + Storyboard 改為 MVVVR 架構. 原本 MVC + Storyboard 要客製化 UI 較為困難, 故改為 MVVVR 架構.
+- 將 iOS Client 從 MVC + Storyboard 改為 MVVVR 架構. 原本 MVC + Storyboard 要客製化 UI 較為困難, 故改為 MVVVR + hardcoding UI 架構.
 - 學習 golang 並研讀 Server 端程式碼. 公司目前沒有 golang 人力, 故要求 Client 端人員學習 golang.
 
 ### 恒遠科技
