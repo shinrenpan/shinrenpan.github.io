@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Xcode</title>
+        <title>播放本地 m3u8</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item affix "><a href="../about_me.html">關於我</a></li><li class="chapter-item affix "><a href="../discussions.html">留言區</a></li><li class="chapter-item affix "><li class="part-title">📘 iOS 開發筆記</li><li class="chapter-item "><a href="../project/index.html">Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/01.html">MVVVR 架構</a></li><li class="chapter-item "><a href="../project/02.html">WebParser</a></li></ol></li><li class="chapter-item expanded "><a href="../xcode/index.html" class="active">Xcode</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../xcode/01.html">MVVVR Template</a></li><li class="chapter-item "><a href="../xcode/02.html">AppDelegate Template</a></li><li class="chapter-item "><a href="../xcode/03.html">Swift Empty File Template</a></li></ol></li><li class="chapter-item "><a href="../uitabbarcontroller/index.html">UITabBarController</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../uitabbarcontroller/01.html">顯示超過 5 個 TabBarItem</a></li></ol></li><li class="chapter-item "><a href="../video/index.html">Video</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../video/01.html">播放本地 m3u8</a></li></ol></li><li class="chapter-item "><li class="part-title">📘 個人</li><li class="chapter-item "><a href="../personal/01.html">常去的網站</a></li><li class="chapter-item "><a href="../personal/99.html">暫存區</a></li></ol>
+                <ol class="chapter"><li class="chapter-item affix "><a href="../about_me.html">關於我</a></li><li class="chapter-item affix "><a href="../discussions.html">留言區</a></li><li class="chapter-item affix "><li class="part-title">📘 iOS 開發筆記</li><li class="chapter-item "><a href="../project/index.html">Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/01.html">MVVVR 架構</a></li><li class="chapter-item "><a href="../project/02.html">WebParser</a></li></ol></li><li class="chapter-item "><a href="../xcode/index.html">Xcode</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../xcode/01.html">MVVVR Template</a></li><li class="chapter-item "><a href="../xcode/02.html">AppDelegate Template</a></li><li class="chapter-item "><a href="../xcode/03.html">Swift Empty File Template</a></li></ol></li><li class="chapter-item "><a href="../uitabbarcontroller/index.html">UITabBarController</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../uitabbarcontroller/01.html">顯示超過 5 個 TabBarItem</a></li></ol></li><li class="chapter-item expanded "><a href="../video/index.html">Video</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../video/01.html" class="active">播放本地 m3u8</a></li></ol></li><li class="chapter-item "><li class="part-title">📘 個人</li><li class="chapter-item "><a href="../personal/01.html">常去的網站</a></li><li class="chapter-item "><a href="../personal/99.html">暫存區</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -244,22 +244,29 @@
 }
 
 </style>
-<h1 id="xcode"><a class="header" href="#xcode">Xcode</a></h1>
+<p>title: 播放本地 m3u8<br />
+tags: <a href="index.html">#Video</a></p>
+<h2 id="tldr"><a class="header" href="#tldr">TL;DR</a></h2>
+<p>原則上 AVPlayer 播放 m3u8 是基於網路播放, 之前的公司懶得實作 HLS 加密, 於是將 m3u8 壓縮成有密碼的壓縮檔, 再透過 <a href="https://github.com/robbiehanson/CocoaHTTPServer">CocoaHTTPServer</a> run 本地端 Server 來播放.</p>
+<p>由於專案轉變為 swift, 加上 <a href="https://github.com/robbiehanson/CocoaHTTPServer">CocoaHTTPServer</a> 已經很久沒維護, 所以查找了一下本地端播放 m3u8 的方法.</p>
+<p>最後查詢到 AVAssetResourceLoaderDelegate 可以解決這個問題.</p>
+<h2 id="demo"><a class="header" href="#demo">Demo</a></h2>
+<p><a href="https://github.com/shinrenpan/play-local-m3u8">Github</a></p>
+<h2 id="參考"><a class="header" href="#參考">參考</a></h2>
 <ul>
-<li><a href="01.html">MVVVR Template</a></li>
-<li><a href="02.html">AppDelegate Template</a></li>
-<li><a href="03.html">Swift Empty File Template</a></li>
+<li><a href="https://stackoverflow.com/questions/45670774/playing-offline-hls-with-aes-128-encryption-ios/45957045#45957045">Playing Offline HLS with AES-128 encryption iOS</a></li>
+<li><a href="https://github.com/Cyklet/VidLoader">VidLoader</a></li>
 </ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../project/02.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../video/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../xcode/01.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../personal/01.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -269,11 +276,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../project/02.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../video/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../xcode/01.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../personal/01.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
