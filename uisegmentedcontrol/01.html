@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>MVVVR 架構</title>
+        <title>客製化分頁 UI 效果</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item affix "><a href="../about_me.html">關於我</a></li><li class="chapter-item affix "><a href="../discussions.html">留言區</a></li><li class="chapter-item affix "><li class="part-title">📘 iOS 開發筆記</li><li class="chapter-item expanded "><a href="../project/index.html">Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../project/01.html" class="active">MVVVR 架構</a></li><li class="chapter-item "><a href="../project/02.html">WebParser</a></li></ol></li><li class="chapter-item "><a href="../xcode/index.html">Xcode</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../xcode/01.html">MVVVR Template</a></li><li class="chapter-item "><a href="../xcode/02.html">AppDelegate Template</a></li><li class="chapter-item "><a href="../xcode/03.html">Swift Empty File Template</a></li></ol></li><li class="chapter-item "><a href="../uitabbarcontroller/index.html">UITabBarController</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../uitabbarcontroller/01.html">顯示超過 5 個 TabBarItem</a></li></ol></li><li class="chapter-item "><a href="../video/index.html">Video</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../video/01.html">播放本地 m3u8</a></li></ol></li><li class="chapter-item "><a href="../uisegmentedcontrol/index.html">UISegmentedControl</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../uisegmentedcontrol/01.html">客製化分頁 UI 效果</a></li></ol></li><li class="chapter-item "><a href="../uipageviewcontroller/index.html">UIPageViewController</a></li><li class="chapter-item affix "><li class="part-title">📘 個人</li><li class="chapter-item "><a href="../personal/01.html">常去的網站</a></li><li class="chapter-item "><a href="../personal/99.html">暫存區</a></li></ol>
+                <ol class="chapter"><li class="chapter-item affix "><a href="../about_me.html">關於我</a></li><li class="chapter-item affix "><a href="../discussions.html">留言區</a></li><li class="chapter-item affix "><li class="part-title">📘 iOS 開發筆記</li><li class="chapter-item "><a href="../project/index.html">Project</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project/01.html">MVVVR 架構</a></li><li class="chapter-item "><a href="../project/02.html">WebParser</a></li></ol></li><li class="chapter-item "><a href="../xcode/index.html">Xcode</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../xcode/01.html">MVVVR Template</a></li><li class="chapter-item "><a href="../xcode/02.html">AppDelegate Template</a></li><li class="chapter-item "><a href="../xcode/03.html">Swift Empty File Template</a></li></ol></li><li class="chapter-item "><a href="../uitabbarcontroller/index.html">UITabBarController</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../uitabbarcontroller/01.html">顯示超過 5 個 TabBarItem</a></li></ol></li><li class="chapter-item "><a href="../video/index.html">Video</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../video/01.html">播放本地 m3u8</a></li></ol></li><li class="chapter-item expanded "><a href="../uisegmentedcontrol/index.html">UISegmentedControl</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../uisegmentedcontrol/01.html" class="active">客製化分頁 UI 效果</a></li></ol></li><li class="chapter-item "><a href="../uipageviewcontroller/index.html">UIPageViewController</a></li><li class="chapter-item affix "><li class="part-title">📘 個人</li><li class="chapter-item "><a href="../personal/01.html">常去的網站</a></li><li class="chapter-item "><a href="../personal/99.html">暫存區</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -244,65 +244,43 @@
 }
 
 </style>
-<p>Title: MVVVR 架構<br />
-Tags: <a href="index.html">#MyProject</a></p>
-<h2 id="前言"><a class="header" href="#前言">前言</a></h2>
-<p>iOS 開發架構繁多, 從 MVC, MVVM, Rx, 到 Clean Swift...等, 最後還是實作了一個最適合自己的架構, MVVVR.</p>
-<h2 id="說明"><a class="header" href="#說明">說明</a></h2>
-<p>開發 iOS 時, 基本上都是 by UIViewController, 一個 MVVVR 模組代表一個 UIViewController 的 Life Cycle.</p>
-<p>包含基本五個模組:</p>
-<ul>
-<li>
-<p><strong>Models</strong><br />
-這個 ViewController 要執行的 Action / 要 Binding 的 State / 要呈現的 Model / 基礎 Raw Data.</p>
-</li>
-<li>
-<p><strong>ViewOutlet</strong><br />
-這個 ViewController 要呈現的 UI.</p>
-</li>
-<li>
-<p><strong>ViewController</strong><br />
-UIViewController 主體.</p>
-</li>
-<li>
-<p><strong>ViewModel</strong><br />
-這個 ViewController 的商業邏輯, 例如 call api.</p>
-</li>
-<li>
-<p><strong>Router</strong><br />
-這個 ViewController 的跳轉邏輯.</p>
-</li>
-</ul>
-<p>ViewController 持有 ViewOutlet.<br />
-ViewController 持有 ViewModel.<br />
-ViewController 持有 Router.<br />
-Router 持有(Weak) ViewController.<br />
-ViewModel 持有 Models.</p>
-<h2 id="關係圖"><a class="header" href="#關係圖">關係圖</a></h2>
-<p>ViewController Binding ViewModel 的 State, 然後由 ViewController 發起 Action,<br />
-ViewController 再依照 ViewModel State 更新 UI.</p>
-<pre class="mermaid">sequenceDiagram
-    participant ViewOutlet
-    participant ViewController
-    participant ViewModel
-    ViewModel--&gt;&gt;ViewController: Binding State
-    ViewController-&gt;&gt;ViewModel: Do Action
-    ViewModel-&gt;&gt;ViewModel: Call API or Update Models
-    ViewModel--&gt;&gt;ViewController: State Changed
-    ViewController--&gt;&gt;ViewOutlet: Reload UI or Router to...
-</pre>
+<p>title: 客製化分頁 UI 效果<br />
+tags: <a href="index.html">#UISegmentedControl</a>, <a href="../uipageviewcontroller/index.html">#UIPageViewController</a></p>
+<h2 id="tldr"><a class="header" href="#tldr">TL;DR</a></h2>
+<p>iOS App 實作分頁功能, 基本上都是用 UISegmentedControl, 但是大部分的美術都不喜歡這個內建元件, 而是想要做的跟 <a href="https://m2.material.io/components/tabs">Android Tabs</a> 一樣.</p>
+<p>這裡用最簡單的 UISegmentedControl 繼承實作, 並與 UIPageViewController 交互.</p>
+<img src="https://raw.githubusercontent.com/shinrenpan/custom-uisegmentedcontrol/main/images/screenshot.gif" width="300" height="auto">
+<h2 id="實作"><a class="header" href="#實作">實作</a></h2>
+<p>繼承一個 UISegmentedControl, 並在 layoutSubviews 設置 layer, 這樣一來繼承的 UISegmentedControl 就不會長得原生的一樣.
+例如實作僅左上右上圓角:</p>
+<pre><code class="language-swift">override func layoutSubviews() {
+     super.layoutSubviews()
+     layer.cornerRadius = 20
+     layer.masksToBounds = true
+     layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+}
+</code></pre>
+<p>接下來其他實作就像一般 UIView 相同了.</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>一定要在 layoutSubviews 實作, 不然點擊 UISegmentedControl 後又會恢復原生樣式.</p>
+</div>
+<p>最後透過 UIPageViewController.setViewControllers 與 UIPageViewControllerDataSource 及 UIPageViewControllerDelegate, 來達到交互效果.</p>
 <h2 id="demo"><a class="header" href="#demo">Demo</a></h2>
-<p><a href="https://github.com/shinrenpan/MVVVR-Demo">Github</a></p>
+<p><a href="https://github.com/shinrenpan/custom-uisegmentedcontrol">Github</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../project/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../uisegmentedcontrol/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../project/02.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../uipageviewcontroller/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -312,11 +290,11 @@ ViewController 再依照 ViewModel State 更新 UI.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../project/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../uisegmentedcontrol/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../project/02.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../uipageviewcontroller/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
