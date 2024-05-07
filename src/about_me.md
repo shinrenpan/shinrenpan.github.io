@@ -104,7 +104,7 @@ iOS 工程師.
 工作內容:
 
 - 使用 Swift 開發維護 App, 並與 3rd-party Objective-C 混編.
-- 使用 [MVVVR](https://github.com/shinrenpan/Note/discussions/27) 架構開發.
+- 使用 [MVVVR] 架構開發.
 - 導入 [XcodeGen](https://github.com/yonaskolb/XcodeGen) 管理 Project.
 - 實作 App 審核時, 隱藏 UI 功能.
 - 客製化 UI.
@@ -120,7 +120,7 @@ iOS 工程師.
 
 工作內容:
 
-- 將 iOS Client 從 MVC + Storyboard 改為 MVVVR 架構. 原本 MVC + Storyboard 要客製化 UI 較為困難, 故改為 MVVVR + hardcoding UI 架構.
+- 將 iOS Client 從 MVC + Storyboard 改為 [MVVVR] 架構. 原本 MVC + Storyboard 要客製化 UI 較為困難, 故改為 [MVVVR] + hardcoding UI 架構.
 - 學習 golang 並研讀 Server 端程式碼. 公司目前沒有 golang 人力, 故要求 Client 端人員學習 golang.
 
 ### 恒遠科技
@@ -148,7 +148,7 @@ App 內容包含:
 - 使用 Swift 開發新功能, 與 Objective-C 混編.
 - 導入 [XcodeGen](https://github.com/yonaskolb/XcodeGen) 管理 Project.
 - 主導專案由 Objective-C 逐漸轉換成 Swift.
-- 導入 [MVVVR](https://github.com/shinrenpan/Note/discussions/27) 架構開發.
+- 導入 [MVVVR] 架構開發.
 - 移除常年不維護第三方套件, 使用原生 API 替代.
 - 移除使用 [GCDWebServer] 播放本地端 m3u8, 使用原生 API 替代, [參考1].
 - 撰寫 Script 切換環境.
@@ -346,7 +346,7 @@ iOS 學習階段2009 (六個月)
 
 五專電子工程科畢業
 
-[參考1]: https://github.com/shinrenpan/Note/discussions/6
+[參考1]: https://shinrenpan.github.io/video/01.html
 [參考2]: https://www.youtube.com/watch?v=aail3KJdb4c
 [參考3]: https://www.youtube.com/watch?v=Unv4XT5EjNI
 [參考4]: https://www.youtube.com/watch?v=fLPyCJoCQWY
@@ -387,3 +387,4 @@ iOS 學習階段2009 (六個月)
 [eac]: https://developer.apple.com/documentation/externalaccessory
 [91app]: https://www.91app.com/
 [Clean Swift]: https://clean-swift.com/
+[MVVVR]: https://shinrenpan.github.io/project/01.html
