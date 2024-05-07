@@ -21,7 +21,14 @@
   - [顯示超過 5 個 TabBarItem](uitabbarcontroller/01.md)
 
 - [Video](video/index.md)
+
   - [播放本地 m3u8](video/01.md)
+
+- [UISegmentedControl](uisegmentedcontrol/index.md)
+
+  - [客製化分頁 UI 效果](uisegmentedcontrol/01.md)
+
+- [UIPageViewController](uipageviewcontroller/index.md)
 
 # 📘 個人
 
