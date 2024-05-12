@@ -5,6 +5,10 @@
 # mdbook
 book
 
+# zola
+/node_modules
+/public
+
 ### macOS ###
 # General
 .DS_Store
