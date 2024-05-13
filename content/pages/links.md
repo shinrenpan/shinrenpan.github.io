@@ -30,11 +30,11 @@ tags = ["Personal"]
 
 ## 線上工具
 
-- [開發工具](https://www.aiotools.top/)
 - [App store 審核變更紀錄](https://www.appstorereviewguidelineshistory.com)
 - [OpenRouter](https://openrouter.ai/)
 - [ConvertIO](https://convertio.co/)
 - [IT Tools](https://it-tools.tech/)
+- [Privacy Manifest generator](https://www.privacymanifest.dev/)
 
 ## 蘋果相關
 
