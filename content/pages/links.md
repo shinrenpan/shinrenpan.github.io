@@ -21,6 +21,7 @@ tags = ["Personal"]
 - [Sarunw](https://sarunw.com/posts/)
 - [WWDC Index](https://nonstrict.eu/wwdcindex/)
 - [Filip Němeček](https://nemecek.be/)
+- [东坡肘子](https://fatbobman.com/zh/weekly/)
 
 ## 綜合論壇
 
