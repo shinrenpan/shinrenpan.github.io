@@ -22,6 +22,7 @@ tags = ["Personal"]
 - [WWDC Index](https://nonstrict.eu/wwdcindex/)
 - [Filip Němeček](https://nemecek.be/)
 - [东坡肘子](https://fatbobman.com/zh/weekly/)
+- [Ole Begemann](https://oleb.net/)
 
 ## 綜合論壇
 
