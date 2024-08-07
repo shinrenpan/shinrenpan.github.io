@@ -12,7 +12,7 @@ description = "iOS Developer"
 default_language = "en"
 
 # When set to "true", a feed is automatically generated.
-generate_feed = false
+generate_feeds = false
 
 theme = "kita"
 
