@@ -1,6 +1,7 @@
 +++
 title = "常去的網站"
 date = "2024-05-13"
+update_date = "2024-08-08"
 path = "links"
 [taxonomies]
 tags = ["Personal"]
@@ -23,6 +24,7 @@ tags = ["Personal"]
 - [Filip Němeček](https://nemecek.be/)
 - [东坡肘子](https://fatbobman.com/zh/weekly/)
 - [Ole Begemann](https://oleb.net/)
+- [最詳細的一篇 async await in Swift](https://www.emergetools.com/blog/posts/swift-async-await-the-full-toolkit)
 
 ## 綜合論壇
 
