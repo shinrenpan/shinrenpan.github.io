@@ -1,7 +1,7 @@
 +++
 title = "常去的網站"
 date = "2024-05-13"
-update_date = "2024-08-08"
+update_date = "2024-09-02"
 path = "links"
 [taxonomies]
 tags = ["Personal"]
@@ -11,6 +11,7 @@ tags = ["Personal"]
 
 ## iOS 開發參考
 
+- [WWDC Notes](https://wwdcnotes.com/documentation/wwdcnotes/)
 - [iOS Dev Weekly](https://iosdevweekly.com)
 - [SwiftUI Weekly](http://weekly.swiftwithmajid.com)
 - [SwiftUI Lab](https://swiftui-lab.com)
