@@ -1,6 +1,7 @@
 +++
 title = "關於我"
 date = "2024-05-11"
+update_date = "2024-09-10"
 path = "about"
 +++
 
@@ -59,7 +60,7 @@ iOS 工程師.
   - XMPP with [XMPPFramework]
   - MQTT with [MQTT-Client-Framework]
   - Socket with [NSStream]
-  - SignalR with [SignalR-ObjC]
+  - SignalR with [SignalR-ObjC], [SignalR-Client-Swift](https://github.com/moozzyk/SignalR-Client-Swift)
   - Live streaming with [ijkplayer], [HaishinKit], [ReplayKit]
   - VOIP
 
@@ -101,7 +102,20 @@ iOS 工程師.
 
 ## 皆凱科技 {#c11}
 
-### iOS 工程師 2023/09 ~ Now
+### iOS 工程師 2023/09 ~ 2024/09
+
+👨‍💻 開發與維護公司金融 App, 參考[影片](https://www.youtube.com/watch?v=4xdZ6mtfEa0).  
+
+工作內容:
+
+- 使用 [MVVVR] 架構開發.
+- 導入 [XcodeGen](https://github.com/yonaskolb/XcodeGen) 管理 Project.
+- 使用 [SignalR](https://learn.microsoft.com/zh-tw/aspnet/signalr/overview/getting-started/introduction-to-signalr) 介接資料.
+- 客製化 UI.
+- 使用 UICollectionView 替代 UITableView 實作列表 UI.
+- 撰寫 Script 切換 dev / qat / production 環境.
+- App 內切換語系實作.
+- 維護與新增公司內部 KLine 套件.
 
 👨‍💻 開發與維護公司 [金田GT](https://apps.apple.com/tw/app/id6467499244) App, 參考[影片](https://youtu.be/Rh_pZrOLsh0).
 
