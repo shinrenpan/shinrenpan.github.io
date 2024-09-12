@@ -51,8 +51,7 @@ iOS 工程師.
 
   - ~~NSURLConnection~~
   - URLSession
-  - gRPC with [grpc-swift](https://github.com/grpc/grpc-swift)
-  - gRPC with [connect-swift](https://github.com/connectrpc/connect-swift)
+  - gRPC with [grpc-swift](https://github.com/grpc/grpc-swift), [connect-swift](https://github.com/connectrpc/connect-swift)
   - 3rd-paryty library ([Alamofire]... etc)
 
 - Instant message
