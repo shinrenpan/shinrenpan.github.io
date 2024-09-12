@@ -1,7 +1,7 @@
 +++
 title = "關於我"
 date = "2024-05-11"
-update_date = "2024-09-10"
+update_date = "2024-09-12"
 path = "about"
 +++
 
@@ -299,7 +299,7 @@ App 內容包含:
 - Memory management (期間 ARC 剛發佈).
 - 使用 Xcode Instruments 檢測 Memory leak 與其他事項.
 - 汰換 AutoResizing 使用 AutoLayout 取代 (期間 AutoLayout 發佈不久).
-- Cell 越來越多層, 使用 layer 與多執行緒來達到 UITableView 滾動時的順暢.
+- UI 卡頓問題.
 
 ## JamZoo {#c3}
 
