@@ -1,10 +1,11 @@
 +++
 title = "關於我"
 date = "2024-05-11"
-update_date = "2024-09-12"
+update_date = "2024-09-16"
 path = "about"
 +++
 
+# Summary
 iOS 工程師.
 自 2009 年開發 iOS App, 擁有 **10年** 以上 iOS App 開發經驗.  
 開發過的 App 類型:
@@ -13,16 +14,16 @@ iOS 工程師.
 - 聊天軟體
 - 藍芽 4.0 以上, 或是 iBeacon
 - 2D 遊戲
-- MFI
 - 影音串流
 - 音樂串流
+- MFI
 
 # 技能
 
 ## 程式語言
 
-- Objective-C 2009 ~ now
-- Swift 3.0 ~ now
+- Objective-C 2009 ~ Now
+- Swift 3.0 ~ Now
 
 ## 語言
 
@@ -31,13 +32,7 @@ iOS 工程師.
 
 ## iOS 技能
 
-- Testing
-
-  - Unit testing
-  - UI Testing
-
 - Custom UI
-
   - Interface Builder
   - Storyboard
   - Hardcode
@@ -47,15 +42,13 @@ iOS 工程師.
   - [SpriteKit]
   - [SwiftUI]
 
-- API communication
-
+- API Communication
   - ~~NSURLConnection~~
   - URLSession
   - gRPC with [grpc-swift](https://github.com/grpc/grpc-swift), [connect-swift](https://github.com/connectrpc/connect-swift)
   - 3rd-paryty library ([Alamofire]... etc)
 
-- Instant message
-
+- Instant Message
   - XMPP with [XMPPFramework]
   - MQTT with [MQTT-Client-Framework]
   - Socket with [NSStream]
@@ -64,7 +57,6 @@ iOS 工程師.
   - VOIP
 
 - Database
-
   - CoreData
   - [fmdb]
   - [Realm]
@@ -74,25 +66,15 @@ iOS 工程師.
   - KeyChain
 
 - BlueTooth
-
   - BLE 4.0 or iBeacon
 
 - Gaming
-
   - [SpriteKit] for 2D game
 
 - Version control
-
   - Git
 
-- CI / CD
-
-  - [Jenkins]
-  - [Fastlane]
-  - [Travis CI]
-  - Xcode server bots
-
-- 3rd-party managment
+- 3rd-Party Managment
   - [Carthage]
   - [CocoaPods]
   - [Swift-Package-Manager][SPM]
@@ -138,7 +120,7 @@ iOS 工程師.
 工作內容:
 
 - 將 iOS Client 從 MVC + Storyboard 改為 [MVVVR] 架構. 原本 MVC + Storyboard 要客製化 UI 較為困難, 故改為 [MVVVR] + hardcoding UI 架構.
-- 學習 golang 並研讀 Server 端程式碼. 公司目前沒有 golang 人力, 故要求 Client 端人員學習 golang.
+- 學習 golang 並研讀 Server 端程式碼
 
 ## 恒遠科技 {#c10}
 
@@ -203,9 +185,6 @@ App 內容包含:
 - 透過 [fmdb] 暫存 API 資料, 達到離線使用.
 - 實作圖片暫存機制, 本地端有圖片就先使用, 沒有的話, 先下載縮圖呈現在畫面, 之後再下載原圖.
 
-維護企業內部專案管理 App 期間, 集團 CEO 至南極挑戰,  
-故此 App 必須調教到 CEO 能在南極使用.
-
 {% admonition(type="info", title="info") %}
 透過干城數碼與遊戲橘子簽約.
 {% end %}
@@ -237,10 +216,6 @@ App 內容包含:
 - 基於 [SignalR] 開發聊天功能.
 - 實作限制地點打卡功能
 
-{% admonition(type="info", title="info") %}
-公司缺發資金, 最後未發佈 App.
-{% end %}
-
 ## 互聯網行動科技 {#c6}
 
 ### iOS 工程師 2015/04 ~ 2016/01
@@ -254,10 +229,6 @@ App 內容包含:
 - 基於 [SpriteKit] 開發遊戲功能.
 - 實作購物商城功能.
 
-{% admonition(type="info", title="info") %}
-公司找不到定位, 最後未發佈 App.
-{% end %}
-
 ## PiPiMy {#c5}
 
 ### iOS 工程師 (Objective-C) 2015/01 ~ 2015/03
@@ -267,10 +238,6 @@ App 內容包含:
 工作內容:
 
 - 使用 Objective-C 實作開發.
-
-{% admonition(type="info", title="info") %}
-公司主管無法溝通, 故開發完 Beta 版本離職.
-{% end %}
 
 ## 時間軸科技 {#c4}
 
@@ -283,10 +250,6 @@ App 內容包含:
 - 使用 Objective-C 實作開發.
 - 開發套版類型 App 架構.
 - 與後端同事討論如何使用套版機制.
-
-{% admonition(type="info", title="info") %}
-公司被遠傳併購後, 產品未能上線.
-{% end %}
 
 ### iOS 工程師 2012/05 ~ 2012/08
 
@@ -343,10 +306,6 @@ App 內容包含:
 
 公司主要產品為 [DAB][dab] 數位廣播晶片, 並開發帶有 DAB 晶片的手機殼, 透過 UART 讓 iPhone 可以收聽 DAB,  
 故一併學習了 [External Accessory Framework][eac].
-
-{% admonition(type="info", title="info") %}
-第一份 iOS 工作, 第一次接觸 UIKit
-{% end %}
 
 # 學歷
 
