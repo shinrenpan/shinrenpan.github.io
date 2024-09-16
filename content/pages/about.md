@@ -33,7 +33,7 @@ iOS 工程師.
 ## iOS 技能
 
 - Custom UI
-  - Interface Builder
+  - Interface Builder (XIB)
   - Storyboard
   - Hardcode
   - AutoLayout
@@ -46,7 +46,7 @@ iOS 工程師.
   - ~~NSURLConnection~~
   - URLSession
   - gRPC with [grpc-swift](https://github.com/grpc/grpc-swift), [connect-swift](https://github.com/connectrpc/connect-swift)
-  - 3rd-paryty library ([Alamofire]... etc)
+  - 3rd-Paryty Library ([Alamofire]... etc)
 
 - Instant Message
   - XMPP with [XMPPFramework]
@@ -214,7 +214,7 @@ App 內容包含:
 
 - 使用 Objective-C 實作開發.
 - 基於 [SignalR] 開發聊天功能.
-- 實作限制地點打卡功能
+- 實作限制地點打卡功能, 基於 Core Location.
 
 ## 互聯網行動科技 {#c6}
 
@@ -260,7 +260,7 @@ App 內容包含:
 - 使用 Objective-C 實作開發.
 - Memory management (期間 ARC 剛發佈).
 - 使用 Xcode Instruments 檢測 Memory leak 與其他事項.
-- 汰換 AutoResizing 使用 AutoLayout 取代 (期間 AutoLayout 發佈不久).
+- 汰換 AutoResizing 使用 AutoLayout 取代.
 - UI 卡頓問題.
 
 ## JamZoo {#c3}
@@ -272,11 +272,11 @@ App 內容包含:
 工作內容:
 
 - 使用 Objective-C 實作開發.
-- 重構 [單身銀行] 聊天機制, 使用 [MQTT] 替代 Long Polling.
+- 重構 [單身銀行] 聊天機制, 使用 [MQTT] 替代定時 Polling.
 - 研究其他聊天機制, 例如 [XMPP], Socket.
 - 開發租車業者 In-House App, 並實作離線功能, [參考2].
 - 開發美髮業者 In-House App.
-- 與工研院同事合作基於 HTML5 電子書瀏覽器 App, 並使用 UIWebVIew 與 App 互通.
+- 與工研院廠商合作基於 HTML5 電子書瀏覽器 App, 並使用 UIWebVIew 與 App 互通.
 
 ## 汎美達電信 {#c2}
 
