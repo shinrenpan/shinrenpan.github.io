@@ -1,7 +1,7 @@
 +++
 title = "關於我"
 date = "2024-05-11"
-update_date = "2024-09-16"
+update_date = "2024-09-18"
 path = "about"
 +++
 
@@ -32,21 +32,21 @@ iOS 工程師.
 
 ## iOS 技能
 
-- Custom UI
+- UI
   - Interface Builder (XIB)
   - Storyboard
-  - Hardcode
+  - Hardcoded
   - AutoLayout
   - Autoresizing
+  - [SwiftUI]
   - Core Animation
   - [SpriteKit]
-  - [SwiftUI]
 
 - API Communication
-  - ~~NSURLConnection~~
   - URLSession
   - gRPC with [grpc-swift](https://github.com/grpc/grpc-swift), [connect-swift](https://github.com/connectrpc/connect-swift)
   - 3rd-Paryty Library ([Alamofire]... etc)
+  - ~~NSURLConnection~~
 
 - Instant Message
   - XMPP with [XMPPFramework]
@@ -58,12 +58,12 @@ iOS 工程師.
 
 - Database
   - CoreData
+  - KeyChain
   - [fmdb]
   - [Realm]
   - NSKeyedArchiver / NSkeyedUnarchiver
   - Plist
   - NSUserDefaults
-  - KeyChain
 
 - BlueTooth
   - BLE 4.0 or iBeacon
@@ -75,9 +75,9 @@ iOS 工程師.
   - Git
 
 - 3rd-Party Managment
-  - [Carthage]
+  - [Swift-Package-Manager]
   - [CocoaPods]
-  - [Swift-Package-Manager][SPM]
+  - [Carthage]
 
 # 工作經歷
 
@@ -85,52 +85,53 @@ iOS 工程師.
 
 ### iOS 工程師 2023/09 ~ 2024/09
 
-👨‍💻 開發與維護公司金融 App, 參考[影片](https://www.youtube.com/watch?v=4xdZ6mtfEa0).  
+開發與維護公司金融 App, 參考[影片10].  
 
 工作內容:
 
 - 使用 [MVVVR] 架構開發.
-- 導入 [XcodeGen](https://github.com/yonaskolb/XcodeGen) 管理 Project.
-- 使用 [SignalR](https://learn.microsoft.com/zh-tw/aspnet/signalr/overview/getting-started/introduction-to-signalr) 介接資料.
+- 導入 [XcodeGen] 管理 Project.
+- 使用 [SignalR] 介接資料.
 - 客製化 UI.
 - 使用 UICollectionView 替代 UITableView 實作列表 UI.
 - 撰寫 Script 切換 dev / qat / production 環境.
 - App 內切換語系實作.
 - 維護與新增公司內部 KLine 套件.
+- 使用 CADisplayLink + RunLoop 實現 UICollectionView 拖動時能正常更新 Cell.
 
-👨‍💻 開發與維護公司 [金田GT](https://apps.apple.com/tw/app/id6467499244) App, 參考[影片](https://youtu.be/Rh_pZrOLsh0).
+開發與維護公司 [金田GT] App, 參考[影片9].
 
 工作內容:
 
 - 使用 Swift 開發維護 App, 並與 3rd-party Objective-C 混編.
 - 使用 [MVVVR] 架構開發.
-- 導入 [XcodeGen](https://github.com/yonaskolb/XcodeGen) 管理 Project.
+- 導入 [XcodeGen] 管理 Project.
 - 實作 App 審核時, 隱藏 UI 功能.
 - 客製化 UI.
-- 使用 gRPC 介接資料.
-- 使用 Jenkins + fastlane 實作簡易 CI / CD.
-- 使用 Firebase 分發 dev / qat 環境 App.
+- 使用 [gRPC] 介接資料.
+- 基於[文章2], 避免 UITableView 在接收 gRPC 資料變動時, reload 太頻繁.
+- 使用 [Jenkins] + [Fastlane] 實作簡易 CI / CD.
+- 使用 [Firebase] 分發 dev / qat 環境 App.
 - 撰寫 Script 切換 dev / qat / production 環境.
-- 導入 Xcode 15 新功能 [Asset symbol generation](https://sarunw.com/posts/swift-symbols-for-asset-catalog/).
+- 導入 Xcode 15 新功能 [Asset symbol generation].
 - HTML5 網站與 app 交互.
 - 使用 SPM / cocoapod 管理套件.
 
-👨‍💻 基於 [Tinode](https://github.com/tinode) 開發 IM 軟體
+基於 [Tinode] 開發 IM 軟體.
 
 工作內容:
 
-- 將 iOS Client 從 MVC + Storyboard 改為 [MVVVR] 架構. 原本 MVC + Storyboard 要客製化 UI 較為困難, 故改為 [MVVVR] + hardcoding UI 架構.
-- 學習 golang 並研讀 Server 端程式碼
+- 將 iOS Client 從 MVC 改為 [MVVVR] 架構.
+- 移除 Storyboard, 改使用 Hardcoded 方式實作 UI, 較容易客製化 UI.
+- 學習 Golang 並研讀 Server 端程式碼
 
 ## 恒遠科技 {#c10}
 
 ### iOS 工程師 2022/04 ~ 2023/07
 
-👨‍💻 開發與維護公司超級簽 App, 參考[影片](https://youtu.be/vgyh0lbtPYY)
+開發與維護公司 App, 參考[影片8].
 
-{% admonition(type="info", title="info") %}
-使用手機錄影, 長短影片功能無法正常顯示.
-{% end %}
+> 使用手機錄影, 長短影片功能無法正常顯示.
 
 App 內容包含:
 
@@ -146,38 +147,35 @@ App 內容包含:
 
 - 接手大陸同事 Objective-C 專案, 並維護.
 - 使用 Swift 開發新功能, 與 Objective-C 混編.
-- 導入 [XcodeGen](https://github.com/yonaskolb/XcodeGen) 管理 Project.
+- 導入 [XcodeGen] 管理 Project, 避免 Project 常產生 Git 衝突.
+- 研究 [Tuist] 與 [XcodeGen] 差異.
 - 主導專案由 Objective-C 逐漸轉換成 Swift.
 - 導入 [MVVVR] 架構開發.
 - 移除常年不維護第三方套件, 使用原生 API 替代.
-- 移除使用 [GCDWebServer] 播放本地端 m3u8, 使用原生 API 替代, [參考1].
+- 移除使用 [GCDWebServer] 播放本地端 m3u8, 使用原生 API 替代, 參考[文章1].
 - 撰寫 Script 切換環境.
 - 實作漫畫閱讀器.
 - 實作小說閱讀器.
-- 遊戲 Web 與 App 交互.
+- 實作遊戲 Web 與 App 交互.
 - 導入合作方直播套件.
-- 與超級簽廠商溝通.
+- 與第三方簽名廠商溝通發佈 App, 不上架至 App Store.
 
 ## 遊戲橘子集團 {#c9}
 
 ### iOS 約聘工程師 2019/06 ~ 2022/02
 
-👨‍💻 開發與維護 [BeanFun] App.
+開發與維護 [BeanFun] App.
 
 工作內容:
 
 - 與主管及同事, 導入 [Clean Swift] 架構.
 - 修正 Objective-C 既有 bug, 並使用 Swift 重構.
 - 使用 Swift 開發新功能, 與 Objective-C 混編.
-- 實作大量 WebView 與 App 交互
-
-{% admonition(type="info", title="info") %}
-透過雙子數位科技於與遊戲橘子簽約.
-{% end %}
+- 實作大量 WebView 與 App 交互.
 
 ### iOS 約聘工程師 2018/09 ~ 2019/03
 
-👨‍💻 開發與維護 In-House 專案管理 App.
+開發與維護 In-House 專案管理 App, 讓集團內員工透過 App 掌控專案進度.
 
 工作內容:
 
@@ -185,30 +183,23 @@ App 內容包含:
 - 透過 [fmdb] 暫存 API 資料, 達到離線使用.
 - 實作圖片暫存機制, 本地端有圖片就先使用, 沒有的話, 先下載縮圖呈現在畫面, 之後再下載原圖.
 
-{% admonition(type="info", title="info") %}
-透過干城數碼與遊戲橘子簽約.
-{% end %}
-
 ## 緯創軟體 {#c8}
 
 ### iOS 工程 2016/08 ~ 2018/03
 
-👨‍💻 開發與維護 [國泰人壽] App
+駐點於國泰人壽, 開發與維護[國泰人壽] App.
 
 工作內容:
 
-- 維護現有 App bug, 並開發新功能, 使用 Objective-C
+- 維護現有 App Objective-C bug.
+- 使用 Swift 開發新功能.
 - 逐漸汰換 Objective-C, 使用 Swift 重構
-
-{% admonition(type="info", title="info") %}
-駐點內湖國泰人壽.
-{% end %}
 
 ## 和特資訊 {#c7}
 
 ### iOS 工程師 2016/03 ~ 2016/06
 
-👨‍💻 開發飯店內部管理系統 App .
+開發飯店內部管理系統 App, 可讓飯店員工打卡或是透過 App 即時傳送訊息.
 
 工作內容:
 
@@ -220,7 +211,7 @@ App 內容包含:
 
 ### iOS 工程師 2015/04 ~ 2016/01
 
-👨‍💻 開發與實作老闆發想的 App.
+開發與實作老闆發想的 App.
 
 工作內容:
 
@@ -233,7 +224,7 @@ App 內容包含:
 
 ### iOS 工程師 (Objective-C) 2015/01 ~ 2015/03
 
-👨‍💻 開發 ~~[行動拍拍賣]~~ Beta 版本
+開發 ~~[行動拍拍賣]~~ Beta 版本, 二手 C2C 交易 App.
 
 工作內容:
 
@@ -243,7 +234,7 @@ App 內容包含:
 
 ### iOS 工程師 2013/09 ~ 2014/06
 
-👨‍💻 開發套版類型 App 機制, 類似今日的 [91 App].
+開發套版類型 App 機制, 讓廠商可透過 App 開店.
 
 工作內容:
 
@@ -253,59 +244,59 @@ App 內容包含:
 
 ### iOS 工程師 2012/05 ~ 2012/08
 
-👨‍💻 開發 [巷弄] 第一版
+開發 [巷弄] beta 第一版, 優惠券類型 App.
 
 工作內容:
 
 - 使用 Objective-C 實作開發.
-- Memory management (期間 ARC 剛發佈).
+- Memory management.
 - 使用 Xcode Instruments 檢測 Memory leak 與其他事項.
-- 汰換 AutoResizing 使用 AutoLayout 取代.
+- 使用 AutoLayout 取代 AutoResizing.
 - UI 卡頓問題.
 
 ## JamZoo {#c3}
 
 ### iOS 工程師 2012/11 ~ 2013/06
 
-👨‍💻 接案公司, 開發大量 App.
+接案公司, 開發大量 App.
 
 工作內容:
 
 - 使用 Objective-C 實作開發.
-- 重構 [單身銀行] 聊天機制, 使用 [MQTT] 替代定時 Polling.
+- 重構 ~~[單身銀行]~~ 聊天機制, 使用 [MQTT] 替代定時 Polling.
 - 研究其他聊天機制, 例如 [XMPP], Socket.
-- 開發租車業者 In-House App, 並實作離線功能, [參考2].
+- 開發租車業者 In-House App, 並實作離線功能, 參考[影片7].
 - 開發美髮業者 In-House App.
-- 與工研院廠商合作基於 HTML5 電子書瀏覽器 App, 並使用 UIWebVIew 與 App 互通.
+- 與工研院廠商合作基於 HTML5 電子書瀏覽器 App, 並實作 UIWebVIew 與 App 互通.
 
 ## 汎美達電信 {#c2}
 
 ### iOS 工程師 2010/09 ~ 2012/02
 
-👨‍💻 接案公司, 開發大量 App.
+接案公司, 開發大量 App.
 
 工作內容:
 
 - 使用 Objective-C 實作開發.
 - 透過 NSURLConnection 與 api 介接取得資料
-- 透過 Media Player Framework 實作媒體 App, [參考3]
-- 使用 UIKit 製作小遊戲功能, [參考4], [參考5]
-- 實作 Core Location App, 與下載 App Skin 功能, [參考6]
+- 透過 Media Player Framework 實作互動 App, 參考[影片3]
+- 使用 UIKit 製作小遊戲功能, 參考[影片4], [影片5]
+- 實作可下載 Skin 功能之 App, 參考[影片6]
 - 實作其他未接觸功能, 例如 SQLite, BLE...
 
 ## 旭揚半導體 {#c1}
 
 ### iOS 工程師 2010/03 ~ 2010/07
 
-👨‍💻 開發與維護 App, [參考7].
+開發與維護基於 MFI 硬體外之接 App, 參考[影片2].
 
 工作內容:
 
 - 使用 Objective-C 實作開發.
-- 使用 UIKit, Foundation Framework 實作 App 功能.
-
-公司主要產品為 [DAB][dab] 數位廣播晶片, 並開發帶有 DAB 晶片的手機殼, 透過 UART 讓 iPhone 可以收聽 DAB,  
-故一併學習了 [External Accessory Framework][eac].
+- 開發新功能網路免費電台.
+- 開發新功能播放本地音樂.
+- 實作 Twitter, Facebook 分享功能.
+- 學習 [External Accessory Framework].
 
 # 學歷
 
@@ -316,11 +307,12 @@ iOS 學習階段2009 (六個月)
 學習內容:
 
 - 學習 Objective-C 基礎
-- 學習 [cocos2d for iPhone][cocos2d]
+- 學習 [cocos2d for iPhone]
 
-結業時與其他兩位學院同學一起使用 [cocos2d for iPhone][cocos2d] 開發出擋十個音樂節奏遊戲, 拿下 2009 數位內容係列競賽手機遊戲創作組金獎.
+結業時與其他兩位學院同學一起使用 [cocos2d for iPhone] 開發出擋十個音樂節奏遊戲,  
+拿下 2009 數位內容係列競賽手機遊戲創作組金獎.
 
-與學院同學結業後, 接案開發音樂 App, [參考8]
+與學院同學結業後, 接案開發音樂 App, 參考[影片1].
 
 ## 朝陽科技大學
 
@@ -330,45 +322,58 @@ iOS 學習階段2009 (六個月)
 
 五專電子工程科畢業
 
-[參考1]: https://shinrenpan.github.io/video/01.html
-[參考2]: https://www.youtube.com/watch?v=aail3KJdb4c
-[參考3]: https://www.youtube.com/watch?v=Unv4XT5EjNI
-[參考4]: https://www.youtube.com/watch?v=fLPyCJoCQWY
-[參考5]: https://www.youtube.com/watch?v=khn3skxDjls
-[參考6]: https://www.youtube.com/watch?v=197C74y68Oo
-[參考7]: https://www.youtube.com/watch?v=ZVgwwkCCrUQ
-[參考8]: https://youtu.be/npV4b-Z9A4w?t=177
-[GCDWebServer]: https://github.com/swisspol/GCDWebServer
+[文章1]: https://shinrenpan.github.io/05/
+[文章2]: http://www.enharmonichq.com/rate-limiting-uitableview-and-uicollectionview-reloads/
+
+[影片1]: https://youtu.be/npV4b-Z9A4w?t=177
+[影片2]: https://www.youtube.com/watch?v=ZVgwwkCCrUQ
+[影片3]: https://www.youtube.com/watch?v=Unv4XT5EjNI
+[影片4]: https://www.youtube.com/watch?v=fLPyCJoCQWY
+[影片5]: https://www.youtube.com/watch?v=khn3skxDjls
+[影片6]: https://www.youtube.com/watch?v=197C74y68Oo
+[影片7]: https://www.youtube.com/watch?v=aail3KJdb4c
+[影片8]: https://youtu.be/vgyh0lbtPYY
+[影片9]: https://youtu.be/Rh_pZrOLsh0
+[影片10]: https://www.youtube.com/watch?v=4xdZ6mtfEa0
+
+[MQTT]: http://mqtt.org
+[XMPP]: https://xmpp.org
+[cocos2d for iPhone]: https://zh.wikipedia.org/wiki/Cocos2d
+[SignalR]: https://learn.microsoft.com/zh-tw/aspnet/signalr/overview/getting-started/introduction-to-signalr
+[Clean Swift]: https://clean-swift.com/
+[MVVVR]: https://shinrenpan.github.io/project/01.html
+[gRPC]: https://grpc.io
+
+[單身銀行]: https://itunes.apple.com/tw/app/單身銀行-實名制-未婚身份認證/id672623637?mt=8
+[巷弄]: https://itunes.apple.com/tw/app/巷弄-美食餐廳半價優惠/id551945238?mt=8
+[行動拍拍賣]: https://itunes.apple.com/app/id1049599582
+[國泰人壽]: https://itunes.apple.com/tw/app/id432046643
+[BeanFun]: https://apps.apple.com/tw/app/beanfun/id1108282446
+[金田GT]: https://apps.apple.com/tw/app/id6467499244
+
+[External Accessory Framework]: https://developer.apple.com/documentation/externalaccessory
 [SpriteKit]: https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SpriteKitFramework_Ref/
+[Asset symbol generation]: https://sarunw.com/posts/swift-symbols-for-asset-catalog/
+[Swift-Package-Manager]: https://www.swift.org/package-manager/
+[ReplayKit]: https://developer.apple.com/documentation/replaykit
+[SwiftUI]: https://developer.apple.com/documentation/swiftui
+
+[fmdb]: https://github.com/ccgus/fmdb
+[XcodeGen]: https://github.com/yonaskolb/XcodeGen
+[Tuist]: https://tuist.io
+[GCDWebServer]: https://github.com/swisspol/GCDWebServer
+[Tinode]: https://github.com/tinode
+[Jenkins]: https://www.jenkins.io
+[Fastlane]: https://fastlane.tools
+[Firebase]: https://firebase.google.com
+[CocoaPods]: https://cocoapods.org
+[Carthage]: https://github.com/Carthage/Carthage
+[Realm]: https://realm.io
 [XMPPFramework]: https://github.com/robbiehanson/XMPPFramework
 [MQTT-Client-Framework]: https://github.com/ckrey/MQTT-Client-Framework
 [NSStream]: https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSStream_Class/
 [SignalR-ObjC]: https://github.com/DyKnow/SignalR-ObjC
 [Hotelityin]: http://www.hotelityin.com
-[fmdb]: https://github.com/ccgus/fmdb
-[Realm]: https://realm.io
-[Jenkins]: https://jenkins.io
-[Fastlane]: https://fastlane.tools
-[CocoaPods]: https://cocoapods.org
-[Carthage]: https://github.com/Carthage/Carthage
-[巷弄]: https://itunes.apple.com/tw/app/巷弄-美食餐廳半價優惠/id551945238?mt=8
-[MQTT]: http://mqtt.org
-[行動拍拍賣]: https://itunes.apple.com/app/id1049599582
-[XMPP]: https://xmpp.org
-[SignalR]: https://www.asp.net/signalr
-[國泰人壽]: https://itunes.apple.com/tw/app/id432046643
-[Travis CI]: https://travis-ci.org
-[單身銀行]: https://itunes.apple.com/tw/app/單身銀行-實名制-未婚身份認證/id672623637?mt=8
-[ReplayKit]: https://developer.apple.com/documentation/replaykit
-[HaishinKit]: https://github.com/shogo4405/HaishinKit.swift
 [ijkplayer]: https://github.com/bilibili/ijkplayer
 [Alamofire]: https://github.com/Alamofire/Alamofire
-[BeanFun]: https://apps.apple.com/tw/app/beanfun/id1108282446
-[SwiftUI]: https://developer.apple.com/documentation/swiftui
-[SPM]: https://www.swift.org/package-manager/
-[cocos2d]: https://zh.wikipedia.org/wiki/Cocos2d
-[dab]: https://en.wikipedia.org/wiki/Digital_Audio_Broadcasting
-[eac]: https://developer.apple.com/documentation/externalaccessory
-[91app]: https://www.91app.com/
-[Clean Swift]: https://clean-swift.com/
-[MVVVR]: https://shinrenpan.github.io/project/01.html
+[HaishinKit]: https://github.com/shogo4405/HaishinKit.swift
