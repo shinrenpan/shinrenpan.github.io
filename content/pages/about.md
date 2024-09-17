@@ -115,7 +115,7 @@ iOS 工程師.
 - 撰寫 Script 切換 dev / qat / production 環境.
 - 導入 Xcode 15 新功能 [Asset symbol generation].
 - HTML5 網站與 app 交互.
-- 使用 SPM / cocoapod 管理套件.
+- 使用 [Swift-Package-Manager] / [CocoaPods] 管理套件.
 
 基於 [Tinode] 開發 IM 軟體.
 
