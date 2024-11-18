@@ -2,8 +2,8 @@
 base_url = "https://shinrenpan.github.io"
 
 # The site title and description; used in feeds by default.
-title = "ShinrenPan"
-description = "iOS Developer"
+title = "iOS Dev Note"
+description = "iOS 開發筆記"
 
 # The default site author.
 #author = "st1020"
