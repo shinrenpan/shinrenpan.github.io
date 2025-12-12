@@ -182,3 +182,9 @@ node_modules
 /package
 /functions
 .env*
+
+# Hugo 忽略建置產生的檔案
+public/
+.hugo_build.lock
+.hugo_cache/
+
