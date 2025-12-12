@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+{{ partial "header.html" . }}
+
+<body>
+	<div class="container wrapper tags">
+		{{ partial "head.html" . }}
+
+    <!-- 如果為 Tag -->
+    {{ if eq .Data.Singular "tag" }}
+      <h2 class="page-title"> Tag: {{ .Title }}</h2>
+    <!-- 如果為 Category -->
+    {{ else if eq .Data.Singular "category" }}
+      <h2 class="page-title"> Category: {{ .Title }}</h2>
+    <!-- 其他 -->
+    {{ else }}
+    <h2 class="page-title"> {{ .Title }}</h2>
+    {{ end }}
+
+		{{ with (.Site.GetPage .Title) }}
+		<ul class="posts flat">
+			{{ range .Pages }}
+			<li class="post">
+				<div class="post-header">
+					<div class="meta">
+						<div class="date">
+							<span class="day">{{ dateFormat "02" .Date }}</span>
+							<span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006" .Date }}{{ end }}</span>
+						</div>
+					</div>
+					<div class="matter">
+						<h4 class="title small">
+							<a href="{{ .RelPermalink }}">{{.Title}}{{ if .Draft }}<sup class="draft-label">DRAFT</sup>{{ end }}</a>
+						</h4>
+            <!-- 顯示 Categories 跟 Tags -->
+            <h4 class="title small smaller taxonomy-list">
+              <!-- 1. 顯示 Categories (@Title) -->
+              {{ if gt .Params.categories 0 }}
+              <ul class="tags flat category-list">
+                {{ $categoryUrl := "categories/"}}
+                {{ range first .Site.Params.maxTags .Params.categories }}
+                <li class="tag-li">
+                  <a href="{{ $categoryUrl | relLangURL }}{{ . | urlize }}">
+                    <!-- 使用 @ 符號 -->
+                    <span class="taxonomy-icon">@</span>{{ . }}
+                  </a>
+                </li>
+                {{ end }}
+              </ul>
+              {{ end }}
+
+              <!-- 2. 顯示 Tags (#Title) -->
+              {{ if gt .Params.tags 0 }}
+              <ul class="tags flat tag-list">
+                {{ $tagUrl := "tags/"}}
+                {{ range first .Site.Params.maxTags .Params.tags }}
+                <li class="tag-li">
+                  <a href="{{ $tagUrl | relLangURL }}{{ . | urlize }}">
+                    <!-- 使用 # 符號 -->
+                    <span class="taxonomy-icon">#</span>{{ . }}
+                  </a>
+                </li>
+                {{ end }}
+              </ul>
+              {{ end }}
+            </h4>
+						<span class="description">
+							{{ if isset .Params "description" }}
+								{{ .Description }}
+							{{ else if gt (len .RawContent) 120 }}
+								{{ slicestr .RawContent 0 120 }}...
+							{{ else }}
+								{{ .RawContent }}
+							{{ end }}
+						</span>
+					</div>
+				</div>
+			</li>
+			{{ end }}
+		</ul>
+		{{ end }}
+	</div>
+
+	{{ partial "footer.html" . }}
+</body>
+
+</html>

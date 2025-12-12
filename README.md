@@ -1,1 +1,0 @@
-https://shinrenpan.github.io
