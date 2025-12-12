@@ -18,11 +18,18 @@ theme = "ink-free"
 pagination.pagerSize = 5
 
 # 網站底部的版權宣告文字
-copyright = "© 2025 Shinren Pan. All rights reserved."
+copyright = "© Shinren Pan. All rights reserved."
 
 # Demo only
 # 忽略特定錯誤 (範例用，一般保持註解或刪除)
 #ignoreErrors = ["error-missing-instagram-accesstoken"]
+
+# ===============================================
+# Cache 設置
+# ===============================================
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
 
 # ===============================================
 # 永久連結設定 (Permalinks)
