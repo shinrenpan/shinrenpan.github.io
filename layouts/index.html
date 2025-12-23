@@ -108,7 +108,7 @@
           {{ range first .Site.Params.maxTags .Params.categories }}
           <li class="tag-li">
             <!-- 使用 relLangURL 處理多語言路徑 -->
-            <a href="{{ " categories/" | relLangURL }}{{ . | urlize }}">
+            <a href="{{ "categories/" | relLangURL }}{{ . | urlize }}">
               <span class="taxonomy-icon">@</span>{{ . }}
             </a>
           </li>
@@ -121,7 +121,7 @@
         <ul class="tags flat tag-list">
           {{ range first .Site.Params.maxTags .Params.tags }}
           <li class="tag-li">
-            <a href="{{ " tags/" | relLangURL }}{{ . | urlize }}">
+            <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}">
               <span class="taxonomy-icon">#</span>{{ . }}
             </a>
           </li>
