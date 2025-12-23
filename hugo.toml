@@ -24,6 +24,11 @@ copyright = "© Shinren Pan. All rights reserved."
 # 忽略特定錯誤 (範例用，一般保持註解或刪除)
 #ignoreErrors = ["error-missing-instagram-accesstoken"]
 
+# 讓 Hugo 自動抓取 Git Commit 時間作為 lastmod
+[frontmatter]
+  lastmod = ["lastmod", ":git", "date", "publishDate"]
+
+
 # ===============================================
 # Cache 設置
 # ===============================================

@@ -9,7 +9,7 @@
       <div class="posts">
 
         {{/* ----------------------------------------------------------------------- */}}
-        {{/* Logic Block: 資料準備與分組邏輯                                           */}}
+        {{/* Logic Block: 資料準備與分組邏輯 */}}
         {{/* ----------------------------------------------------------------------- */}}
 
         {{/* 1. 抓取文章：限制在 config 設定的 mainSections (通常是 posts) */}}
@@ -19,46 +19,46 @@
         {{ $pages = where $pages "Params.hidden" "ne" true }}
 
         {{/* 3. 分流：將文章拆分為「置頂」與「非置頂」兩組 */}}
-        {{/*    - pinned: true 的文章放入 $pinnedPosts */}}
-        {{/*    - 其餘文章放入 $regularPosts */}}
+        {{/* - pinned: true 的文章放入 $pinnedPosts */}}
+        {{/* - 其餘文章放入 $regularPosts */}}
         {{ $pinnedPosts := where $pages "Params.pinned" true }}
         {{ $regularPosts := where $pages "Params.pinned" "!=" true }}
 
         {{/* 4. 分頁設定：我們只對「非置頂」的文章進行分頁 */}}
-        {{/*    這樣做是為了保證置頂文章永遠只出現在第一頁的頂部，不會干擾分頁計算 */}}
+        {{/* 這樣做是為了保證置頂文章永遠只出現在第一頁的頂部，不會干擾分頁計算 */}}
         {{ $paginator := .Paginate $regularPosts }}
 
 
         {{/* ----------------------------------------------------------------------- */}}
-        {{/* View Block: 置頂文章區塊 (Pinned Section)                                 */}}
+        {{/* View Block: 置頂文章區塊 (Pinned Section) */}}
         {{/* ----------------------------------------------------------------------- */}}
 
         {{/* 條件：當前必須是「第 1 頁」 且 「有置頂文章」才顯示此區塊 */}}
         {{ if and (eq $paginator.PageNumber 1) $pinnedPosts }}
-          <div class="pinned-section">
-            <!-- 標示文字 (可選) -->
-            <div class="section-label">📌 置頂</div>
+        <div class="pinned-section">
+          <!-- 標示文字 (可選) -->
+          <div class="section-label">📌 置頂</div>
 
-            <!-- 遍歷置頂文章 -->
-            {{ range $pinnedPosts }}
-              <!-- 呼叫下方定義的 "post_item" 模板，傳入當前文章上下文 (.) -->
-              {{ template "post_item" . }}
-            {{ end }}
-          </div>
+          <!-- 遍歷置頂文章 -->
+          {{ range $pinnedPosts }}
+          <!-- 呼叫下方定義的 "post_item" 模板，傳入當前文章上下文 (.) -->
+          {{ template "post_item" . }}
+          {{ end }}
+        </div>
 
-          <!-- 分隔線：用來區隔置頂與一般文章 -->
-          <div class="pinned-separator"></div>
+        <!-- 分隔線：用來區隔置頂與一般文章 -->
+        <div class="pinned-separator"></div>
         {{ end }}
 
 
         {{/* ----------------------------------------------------------------------- */}}
-        {{/* View Block: 一般文章區塊 (Regular Section)                                */}}
+        {{/* View Block: 一般文章區塊 (Regular Section) */}}
         {{/* ----------------------------------------------------------------------- */}}
 
         <div class="regular-section">
           <!-- 遍歷分頁過後的文章 (這裡只有非置頂文章) -->
           {{ range $paginator.Pages }}
-            {{ template "post_item" . }}
+          {{ template "post_item" . }}
           {{ end }}
         </div>
 
@@ -72,33 +72,33 @@
 </body>
 
 {{/* ----------------------------------------------------------------------- */}}
-{{/* Template Define: 單篇文章卡片模板                                         */}}
-{{/* 為了避免 HTML 重複兩次 (置頂一次、一般一次)，我們將結構抽取出來定義在這裡      */}}
+{{/* Template Define: 單篇文章卡片模板 */}}
+{{/* 為了避免 HTML 重複兩次 (置頂一次、一般一次)，我們將結構抽取出來定義在這裡 */}}
 {{/* ----------------------------------------------------------------------- */}}
 {{ define "post_item" }}
 <div class="post {{ if .Params.pinned }}pinned-post{{ end }}">
   <div class="post-header">
-    <div class="meta">
-      <div class="date">
-        <span class="day">{{ dateFormat "02" .Date }}</span>
-        <span class="rest">
-          {{ if $.Site.Data.month }}
-            {{/* 如果有自定義月份數據，則轉換月份顯示 */}}
-            {{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ .Date.Year }}
-          {{ else }}
-            {{/* 否則使用預設日期格式 */}}
-            {{ dateFormat "Jan 2006" .Date }}
-          {{ end }}
-        </span>
-      </div>
-    </div>
     <div class="matter">
+      <!-- 標題 -->
       <h4 class="title small">
         <a href="{{ .RelPermalink }}">
           {{.Title}}
           {{ if .Draft }}<sup class="draft-label">DRAFT</sup>{{ end }}
         </a>
       </h4>
+
+      <!-- 日期資訊 - 水平排列 -->
+      <div class="date-row">
+        <div class="publish-date">
+          發佈於 {{ .Date.Format "2006-01-02" }}
+        </div>
+
+        {{ if and (ne .Lastmod .Date) (gt .Lastmod .Date) }}
+        <div class="lastmod-subtle-container">
+          {{ .Lastmod.Format "2006-01-02" }} 更新
+        </div>
+        {{ end }}
+      </div>
 
       <!-- Taxonomy: 顯示 Categories 與 Tags -->
       <h4 class="title small smaller taxonomy-list">
@@ -108,7 +108,7 @@
           {{ range first .Site.Params.maxTags .Params.categories }}
           <li class="tag-li">
             <!-- 使用 relLangURL 處理多語言路徑 -->
-            <a href="{{ "categories/" | relLangURL }}{{ . | urlize }}">
+            <a href="{{ " categories/" | relLangURL }}{{ . | urlize }}">
               <span class="taxonomy-icon">@</span>{{ . }}
             </a>
           </li>
@@ -121,7 +121,7 @@
         <ul class="tags flat tag-list">
           {{ range first .Site.Params.maxTags .Params.tags }}
           <li class="tag-li">
-            <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}">
+            <a href="{{ " tags/" | relLangURL }}{{ . | urlize }}">
               <span class="taxonomy-icon">#</span>{{ . }}
             </a>
           </li>
@@ -130,14 +130,14 @@
         {{ end }}
       </h4>
 
-      <!-- 摘要顯示邏輯 -->
+      <!-- 文章摘要 -->
       <span class="description">
-        {{ if .Params.description }}
-          <!-- 1. 優先顯示 front matter 中的 description -->
-          {{ .Params.description }}
+        {{ if isset .Params "description" }}
+        {{ .Description }}
+        {{ else if gt (len .RawContent) 120 }}
+        {{ slicestr .RawContent 0 120 }}...
         {{ else }}
-          <!-- 2. 否則自動抓取摘要，並截斷至 120 字 -->
-          {{ .Summary | truncate 120 }}
+        {{ .RawContent }}
         {{ end }}
       </span>
     </div>
@@ -160,7 +160,8 @@
   /* 分隔線：虛線樣式 */
   .pinned-separator {
     border-top: 2px dashed #e0e0e0;
-    margin: 3rem 0; /* 上下間距 */
+    margin: 3rem 0;
+    /* 上下間距 */
     position: relative;
   }
 

@@ -1,56 +1,68 @@
 <div class="post-header">
-    {{ if ne .Date.Year 1 }}
-    <div class="meta">
-        <div class="date">
-            <span class="day">{{ dateFormat "02" .Date }}</span>
-            <span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d"
-                .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006" .Date }}{{ end }}</span>
-        </div>
-    </div>
-    {{ end }}
-    <div class="matter">
-      <h4 class="title small">
-        {{.Title}}
-      </h4>
-      <!-- 字數與閱讀時間
-      <!--{{ $wordCountNoCode := replaceRE `(?s)<div class="highlight">.*?</div>` "" .Content |
-      countwords }}
-      <h4 class="title small smaller">
-        {{ $wordCountNoCode | lang.FormatNumberCustom 0 }} words, ~{{ div $wordCountNoCode
-        .Site.Params.wpm
-        }} min read
-      </h4>-->
-      <!-- 顯示 Categories 給 Tags -->
-      <h4 class="title small smaller taxonomy-list">
-        <!-- 1. 顯示 Categories (@Title) -->
-        {{ if gt .Params.categories 0 }}
-        <ul class="tags flat category-list">
-          {{ $categoryUrl := "categories/"}}
-          {{ range first .Site.Params.maxTags .Params.categories }}
-          <li class="tag-li">
-            <a href="{{ $categoryUrl | relLangURL }}{{ . | urlize }}">
-              <!-- 使用 @ 符號 -->
-              <span class="taxonomy-icon">@</span>{{ . }}
-            </a>
-          </li>
-          {{ end }}
-        </ul>
-        {{ end }}
+  <div class="matter">
+    <!-- 標題 -->
+    <h4 class="title small">
+      {{.Title}}
+    </h4>
 
-        <!-- 2. 顯示 Tags (#Title) -->
-        {{ if gt .Params.tags 0 }}
-        <ul class="tags flat tag-list">
-          {{ $tagUrl := "tags/"}}
-          {{ range first .Site.Params.maxTags .Params.tags }}
-          <li class="tag-li">
-            <a href="{{ $tagUrl | relLangURL }}{{ . | urlize }}">
-              <!-- 使用 # 符號 -->
-              <span class="taxonomy-icon">#</span>{{ . }}
-            </a>
-          </li>
-          {{ end }}
-        </ul>
-        {{ end }}
-      </h4>
+
+    {{/* 日期資訊區塊 - 採用水平排列設計 */}}
+    {{/* 使用 .date-row 容器讓發佈日期與更新日期並排顯示 */}}
+    {{/* 兩個日期之間使用 CSS ::before 偽元素添加圓點分隔符 */}}
+    <div class="date-row">
+      {{/* 發佈日期 - 使用 ISO 格式 (YYYY-MM-DD) */}}
+      {{/* 樣式：無襯線斜體，較淡顏色，視覺上像元數據 */}}
+      {{ if ne .Date.Year 1 }}
+      <div class="publish-date">
+        發佈於 {{ .Date.Format "2006-01-02" }}
+      </div>
+      {{ end }}
+
+      {{/* 最後更新時間 - 僅在更新日期晚於發佈日期時顯示 */}}
+      {{/* 條件：lastmod 不等於 date 且 lastmod 大於 date */}}
+      {{/* 樣式：與發佈日期一致的無襯線斜體 */}}
+      {{ if and (ne .Lastmod .Date) (gt .Lastmod .Date) }}
+      <div class="lastmod-subtle-container">
+        {{ .Lastmod.Format "2006-01-02" }} 更新
+      </div>
+      {{ end }}
     </div>
+
+
+    {{/* 分類與標籤顯示區塊 */}}
+    {{/* 使用 .taxonomy-list 類別確保所有標籤在同一行水平排列 */}}
+    <h4 class="title small smaller taxonomy-list">
+      {{/* 1. 顯示文章分類 (Categories) - 使用 @ 符號標示 */}}
+      {{/* 最多顯示 maxTags 數量的分類 */}}
+      {{ if gt .Params.categories 0 }}
+      <ul class="tags flat category-list">
+        {{ $categoryUrl := "categories/"}}
+        {{ range first .Site.Params.maxTags .Params.categories }}
+        <li class="tag-li">
+          <a href="{{ $categoryUrl | relLangURL }}{{ . | urlize }}">
+            {{/* @ 符號用於標示分類，與標籤的 # 符號區分 */}}
+            <span class="taxonomy-icon">@</span>{{ . }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+
+      {{/* 2. 顯示文章標籤 (Tags) - 使用 # 符號標示 */}}
+      {{/* 最多顯示 maxTags 數量的標籤 */}}
+      {{ if gt .Params.tags 0 }}
+      <ul class="tags flat tag-list">
+        {{ $tagUrl := "tags/"}}
+        {{ range first .Site.Params.maxTags .Params.tags }}
+        <li class="tag-li">
+          <a href="{{ $tagUrl | relLangURL }}{{ . | urlize }}">
+            {{/* # 符號用於標示標籤，與分類的 @ 符號區分 */}}
+            <span class="taxonomy-icon">#</span>{{ . }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+    </h4>
+  </div>
 </div>
