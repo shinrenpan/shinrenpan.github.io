@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+{{ partial "header.html" . }}
+
+<body>
+
+
+	{{ if and (gt .WordCount 400 ) (or (eq .Site.Params.toc "floating") (eq .Site.Params.toc "both") )}}
+	<div class="container-wide wrapper">
+		{{ partial "head.html" . }}
+
+		{{ partial "content_floating_toc.html" . }}
+	</div>
+	{{ else }}
+	<div class="container wrapper">
+		{{ partial "head.html" . }}
+
+		{{ partial "content_static.html" . }}
+
+    {{ if not (eq .Params.comments false) }}
+      <section class="post-comments">
+        {{ partial "comments.html" . }}
+      </section>
+    {{ end }}
+
+	</div>
+	{{ end }}
+
+	{{ partial "footer.html" . }}
+	{{ if and (gt .WordCount 400 ) (or (eq .Site.Params.toc "floating") (eq .Site.Params.toc "both") )}}
+	{{ partial "toc_script.html" . }}
+	{{ end }}
+</body>
+
+</html>
