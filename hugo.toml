@@ -137,10 +137,11 @@ name = "個人收藏"
 url = "/categories/personal"
 weight = 6
 
-[[menu.main]]
-name = "留言"
-url = "https://github.com/shinrenpan/shinrenpan.github.io/discussions/2"
-weight = 6
+# 改使用 giscus
+# [[menu.main]]
+# name = "留言"
+# url = "https://github.com/shinrenpan/shinrenpan.github.io/discussions/2"
+# weight = 6
 
 # ===============================================
 # 社交連結設定 (Social Links)
