@@ -33,12 +33,11 @@ categories: [Development]
 
 ### Categories
 
-Only two categories exist:
-
 | Category | 用途 |
 |---|---|
 | `Personal` | 個人收藏／參考頁（常用軟體、常去的網站）|
 | `Development` | 所有技術文章和 Demo |
+| `WWDCxx` | WWDC 年度系列文章，例如 `WWDC26`、`WWDC27` |
 
 ### Tags
 
