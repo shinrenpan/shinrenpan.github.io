@@ -7,6 +7,7 @@ Theme: `ink-free`. Language: Traditional Chinese (Taiwan).
 
 - Posts live in `content/posts/`
 - Filename format: `YYYY-MM-DD.md`
+- Same-day second post: `YYYY-MM-DD-2.md` (slug: `YYYY-MM-DD-2`), third: `YYYY-MM-DD-3.md`, etc.
 
 ## Front Matter Template
 
@@ -24,7 +25,7 @@ categories: [Development]
 
 ### Front Matter Rules
 
-- `slug` = same as filename date (e.g., `2026-04-24`)
+- `slug` = same as filename stem (e.g., `2026-04-24`, or `2026-04-24-2` for same-day second post)
 - Always include `"AI寫作"` tag for AI-assisted posts
 - `lastmod` = today's date when creating or updating
 - `pinned: true` only for evergreen reference pages (e.g., bookmarks list)
