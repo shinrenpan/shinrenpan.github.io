@@ -29,6 +29,7 @@ categories: [Personal]
 - `lastmod` = today's date when creating or updating
 - `categories`: usually `[Personal]`; use `[Demo]` for demo/sample projects
 - `pinned: true` only for evergreen reference pages (e.g., bookmarks list)
+- Never use the same term in both `tags` and `categories` — Hugo's `GetPage` will throw an ambiguity error
 
 ## Common Tags
 
