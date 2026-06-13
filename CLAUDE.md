@@ -18,7 +18,7 @@ date: YYYY-MM-DD
 lastmod: YYYY-MM-DD
 slug: YYYY-MM-DD
 tags: ["AI寫作", "TagA", "TagB"]
-categories: [Personal]
+categories: [Development]
 ---
 ```
 
@@ -27,14 +27,24 @@ categories: [Personal]
 - `slug` = same as filename date (e.g., `2026-04-24`)
 - Always include `"AI寫作"` tag for AI-assisted posts
 - `lastmod` = today's date when creating or updating
-- `categories`: usually `[Personal]`; use `[Demo]` for demo/sample projects
 - `pinned: true` only for evergreen reference pages (e.g., bookmarks list)
 - Never use the same term in both `tags` and `categories` — Hugo's `GetPage` will throw an ambiguity error
 
-## Common Tags
+### Categories
 
-iOS: `Swift`, `SwiftUI`, `UIKit`, `Networking`, `Architecture`, `MVVMC`, `TCA`, `MQTT`, `BadBackend`
-Meta: `AI寫作`
+Only two categories exist:
+
+| Category | 用途 |
+|---|---|
+| `Personal` | 個人收藏／參考頁（常用軟體、常去的網站）|
+| `Development` | 所有技術文章和 Demo |
+
+### Tags
+
+- **大方向**：`Swift`, `SwiftUI`, `UIKit`, `AVFoundation`, `CoreBluetooth`, `Architecture`, `Git`, `MQTT`
+- **小方向**：`UILabel`, `UITextField`, `KeyPath`, `AVPlayer`, `ANCS`, `MVVMC`, `TCA`, `Networking`, `BadBackend`
+- **類型**：`Demo`（可執行的範例專案）
+- **Meta**：`AI寫作`（AI 協助撰寫）
 
 ## Code Examples
 
