@@ -64,7 +64,7 @@ Meta: `AI寫作`
 3. Core implementation with code examples
 4. Real-world usage examples
 5. Summary / takeaways
-6. Links to GitHub demo (if any)
+6. Screenshots/GIFs go near the top (after intro); GitHub demo link goes at the bottom
 
 ## Images
 
