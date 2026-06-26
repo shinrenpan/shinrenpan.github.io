@@ -16,7 +16,6 @@ Theme: `ink-free`. Language: Traditional Chinese (Taiwan).
 title: 文章標題
 description: 一句話摘要，吸引人點進來。
 date: YYYY-MM-DD
-lastmod: YYYY-MM-DD
 slug: YYYY-MM-DD
 tags: ["AI寫作", "TagA", "TagB"]
 categories: [Development]
@@ -27,9 +26,20 @@ categories: [Development]
 
 - `slug` = same as filename stem (e.g., `2026-04-24`, or `2026-04-24-2` for same-day second post)
 - Always include `"AI寫作"` tag for AI-assisted posts
-- `lastmod` = today's date when creating or updating
+- **Do NOT set `lastmod` on creation** — leave it out. Only add `lastmod: YYYY-MM-DD` when the post is genuinely edited after publication. `lastmod` is for marking real updates, not a duplicate of `date`.
 - `pinned: true` only for evergreen reference pages (e.g., bookmarks list)
 - Never use the same term in both `tags` and `categories` — Hugo's `GetPage` will throw an ambiguity error
+- **Same-day series posts (Part 1 / Part 2 / ...)**: use full RFC 3339 timestamps with `+08:00` so list order matches the series sequence. Hugo's default sort is `Date` first; same date without timestamps falls back to filepath, which gives wrong order for Part 1 / Part 2. Standalone same-day posts (no series relationship) can keep the plain `date: YYYY-MM-DD` form.
+
+  ```yaml
+  # Part 1 → content/posts/2026-06-26.md
+  date: 2026-06-26T10:00:00+08:00
+
+  # Part 2 → content/posts/2026-06-26-2.md
+  date: 2026-06-26T11:00:00+08:00
+  ```
+
+  Don't reach for `weight` instead — the ink-free theme's list templates may use `.Pages.ByDate.Reverse` directly and bypass weight entirely. Timestamps are the safe, theme-agnostic fix.
 
 ### Categories
 
