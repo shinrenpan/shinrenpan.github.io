@@ -51,7 +51,7 @@ categories: [Development]
 
 ### Tags
 
-- **大方向**：`Swift`, `SwiftUI`, `UIKit`, `AVFoundation`, `CoreBluetooth`, `Architecture`, `Git`, `MQTT`
+- **大方向**：`Swift`, `SwiftUI`, `UIKit`, `AVFoundation`, `CoreBluetooth`, `Architecture`, `Git`, `MQTT`, `Skip`
 - **小方向**：`UILabel`, `UITextField`, `KeyPath`, `AVPlayer`, `ANCS`, `MVVMC`, `TCA`, `Networking`, `BadBackend`
 - **類型**：`Demo`（可執行的範例專案）
 - **Meta**：`AI寫作`（AI 協助撰寫）
