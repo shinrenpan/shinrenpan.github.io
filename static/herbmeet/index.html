@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支援 · Support — 哈波蜜 HerbMeet</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6b6b70;
+    --line: #e3e3e6;
+    --accent: #2e7d32;
+    --card: #f7f7f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1210;
+      --fg: #e9e9ea;
+      --muted: #9a9aa0;
+      --line: #26282a;
+      --accent: #6cc070;
+      --card: #171a18;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 8px; }
+  h1 { font-size: 1.5rem; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 0.9rem; }
+  .lang { margin: 14px 0 0; font-size: 0.9rem; }
+  .lang a { color: var(--accent); text-decoration: none; }
+  h2 { font-size: 1.2rem; margin: 40px 0 4px; }
+  h3 { font-size: 1rem; margin: 26px 0 4px; }
+  p, li { color: var(--fg); }
+  ul { padding-left: 1.2em; }
+  li { margin: 4px 0; }
+  .muted { color: var(--muted); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 16px 0;
+  }
+  a { color: var(--accent); }
+  hr { border: none; border-top: 1px solid var(--line); margin: 48px 0; }
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>支援 · Support</h1>
+    <div class="sub">哈波蜜 HerbMeet · 眾包蔬食地圖 · Crowdsourced vegetarian map</div>
+    <div class="lang"><a href="#zh">中文</a> · <a href="#en">English</a></div>
+  </header>
+
+  <!-- ===================== 中文 ===================== -->
+  <section id="zh">
+    <h2>中文</h2>
+
+    <div class="card">
+      <strong>直接聯絡：</strong><a href="mailto:shinren.pan@gmail.com">shinren.pan@gmail.com</a><br>
+      餐廳資料有誤不必寫信——在 App 裡直接提出修正比較快，也會留下紀錄讓其他人一起確認。
+    </div>
+
+    <h3>餐廳資料錯了、店已經關了，怎麼回報？</h3>
+    <p>在地圖上點那家店 → <strong>編輯</strong>，可以改分類、改名稱，或回報「已歇業／不存在」。送出後會變成一則<strong>提案</strong>，由其他使用者投票確認。你不需要聯絡我們，這條路徑才是資料真正被修正的方式。</p>
+
+    <h3>我送出的修正多久會生效？</h3>
+    <p>取決於多久湊到足夠的票。一則提案要生效，需要累積<strong>權重 3</strong>，而且必須來自<strong>至少 2 位不同的使用者</strong>——所以一個人無論如何都無法自己決定一筆資料。沒人投票的提案會一直等下去，你也可以隨時撤回自己的提案。</p>
+
+    <h3>為什麼我附近一家店都沒有？</h3>
+    <p>這張地圖的資料是使用者一起建起來的，所以有的地區密、有的地區空。如果你那一帶是空白的，代表還沒有人加過——你可以是第一個。地圖上灰色的圖釘是<strong>被回報歇業</strong>的店，它們刻意保留而不是刪掉，這樣你才知道「這裡以前有一家」，也才有人能回報它其實又開了。</p>
+
+    <h3>為什麼要登入才能投票或提案？</h3>
+    <p>因為投票需要分辨「兩個人同意」和「同一個人投兩次」。登入方式只有 <strong>Sign in with Apple</strong> 與 <strong>Google</strong>，沒有帳號密碼要記。只看地圖、搜尋餐廳完全不需要登入。</p>
+
+    <h3>分類上的「純素、蛋素、奶素、含五辛、也賣葷食」是什麼意思？</h3>
+    <p>它們是<strong>可以同時成立</strong>的標籤，不是五選一。一家同時供應純素與蛋素餐點的店，兩個標籤都會標上；「含五辛」和「也賣葷食」則是分開標示的提醒。一個標籤代表這家店<strong>有提供</strong>該選項，不代表整家店只有那樣。</p>
+
+    <h3>購買投票權重是什麼？會不會變成有錢就說了算？</h3>
+    <p>不會。App 沒有廣告也沒有訂閱制，內購是唯一的收入來源。購買會提高你的會員等級，等級就是投票權重——但等級有上限，而上限低於一則提案生效所需的權重。也就是說<strong>買到頂，你的票仍然不足以自己通過任何一筆修正</strong>，還是需要另一個人同意。</p>
+
+    <h3>刪除帳號</h3>
+    <p>App 內「設定 → 刪除帳號」會刪除你的帳號與所有回報紀錄，無法復原。如果你是用 Apple 帳號登入，iOS 端的授權需要你自己到<strong>設定 → 你的名字 → 密碼與安全性 → 使用 Apple 帳號登入的 App</strong> 移除。</p>
+
+    <p class="muted" style="margin-top:32px"><a href="./privacy.html#zh">隱私權政策</a></p>
+  </section>
+
+  <hr>
+
+  <!-- ===================== English ===================== -->
+  <section id="en">
+    <h2>English</h2>
+
+    <div class="card">
+      <strong>Contact:</strong> <a href="mailto:shinren.pan@gmail.com">shinren.pan@gmail.com</a><br>
+      For wrong restaurant data, don't email — proposing a correction in the app is faster, and it leaves a record other people can confirm.
+    </div>
+
+    <h3>How do I report wrong data or a shop that has closed?</h3>
+    <p>Tap the place on the map → <strong>Edit</strong>. You can change its tags or name, or report it as closed. What you submit becomes a <strong>proposal</strong> that other users vote on. You don't need to contact us — this is the path through which data actually gets corrected.</p>
+
+    <h3>How long until my correction takes effect?</h3>
+    <p>As long as it takes to gather enough votes. A proposal needs a combined <strong>weight of 3</strong> and agreement from <strong>at least 2 distinct users</strong> — so no single person can decide an entry on their own, ever. A proposal nobody votes on simply waits, and you can withdraw your own at any time.</p>
+
+    <h3>Why is there nothing near me?</h3>
+    <p>Coverage is built entirely by the people using the app, so it is dense in some areas and empty in others. If your area is blank, nobody has added anything there yet — you can be the first. Grey pins are places <strong>reported as closed</strong>; they are kept rather than deleted, so you know something used to be there and so someone can report that it has reopened.</p>
+
+    <h3>Why do I need to sign in to vote or propose?</h3>
+    <p>Because voting has to tell "two people agreed" apart from "one person voted twice". The only sign-in methods are <strong>Sign in with Apple</strong> and <strong>Google</strong> — there is no password to remember. Browsing the map and searching need no account at all.</p>
+
+    <h3>What do the tags mean — vegan, ovo, lacto, contains allium, also serves meat?</h3>
+    <p>They apply <strong>independently</strong>, not as a single choice. A place serving both vegan and ovo dishes carries both tags; contains-allium and also-serves-meat are separate advisories. A tag means the place <strong>offers</strong> that option — not that it offers nothing else.</p>
+
+    <h3>What is buying vote weight? Does money decide the map?</h3>
+    <p>No. There are no ads and no subscription; the in-app purchase is the only revenue. Buying raises your member level, and level is your vote weight — but level is capped, and the cap is below the weight a proposal needs to pass. <strong>Even at the cap, your vote alone cannot carry any correction</strong>; someone else still has to agree.</p>
+
+    <h3>Deleting your account</h3>
+    <p>Settings → Delete Account removes your account and all of your reports permanently. If you signed in with Apple, the grant on the iOS side has to be removed by you under <strong>Settings → your name → Sign-In &amp; Security → Sign in with Apple</strong>.</p>
+
+    <p class="muted" style="margin-top:32px"><a href="./privacy.html#en">Privacy Policy</a></p>
+  </section>
+
+  <footer>© 2026 Shinren Pan · 哈波蜜 HerbMeet</footer>
+
+</div>
+</body>
+</html>

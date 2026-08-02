@@ -1,47 +1,161 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>哈波蜜 隱私權政策</title>
+<title>隱私權政策 · Privacy Policy — 哈波蜜 HerbMeet</title>
 <style>
-  body { font-family: -apple-system, "PingFang TC", "Helvetica Neue", sans-serif;
-         line-height: 1.7; color: #222; max-width: 760px; margin: 2rem auto; padding: 0 1.2rem; }
-  h1 { font-size: 1.6rem; } h2 { font-size: 1.2rem; margin-top: 1.8rem; }
-  .meta { color: #666; font-size: .9rem; } code { background: #f2f2f2; padding: 1px 4px; border-radius: 3px; }
-  a { color: #2e7d32; }
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6b6b70;
+    --line: #e3e3e6;
+    --accent: #2e7d32;
+    --card: #f7f7f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1210;
+      --fg: #e9e9ea;
+      --muted: #9a9aa0;
+      --line: #26282a;
+      --accent: #6cc070;
+      --card: #171a18;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 8px; }
+  h1 { font-size: 1.5rem; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 0.9rem; }
+  .lang { margin: 14px 0 0; font-size: 0.9rem; }
+  .lang a { color: var(--accent); text-decoration: none; }
+  h2 { font-size: 1.2rem; margin: 40px 0 4px; }
+  h3 { font-size: 1rem; margin: 26px 0 4px; }
+  p, li { color: var(--fg); }
+  ul { padding-left: 1.2em; }
+  li { margin: 4px 0; }
+  .muted { color: var(--muted); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 16px 0;
+  }
+  a { color: var(--accent); }
+  code { background: var(--card); padding: 1px 5px; border-radius: 5px; font-size: 0.9em; }
+  hr { border: none; border-top: 1px solid var(--line); margin: 48px 0; }
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </style>
 </head>
 <body>
-<h1>哈波蜜（HerbMeet）隱私權政策</h1>
-<p class="meta">生效日：2026 年 7 月 4 日</p>
+<div class="wrap">
 
-<p>哈波蜜是一款眾包的素食餐廳地圖 App。本政策說明我們蒐集哪些資料、如何使用，以及你可以如何管理自己的資料。</p>
+  <header>
+    <h1>隱私權政策 · Privacy Policy</h1>
+    <div class="sub">哈波蜜 HerbMeet · 生效日 Effective 2026-07-04 · 最後更新 Last updated 2026-08-03</div>
+    <div class="lang"><a href="#zh">中文</a> · <a href="#en">English</a></div>
+  </header>
 
-<h2>一、我們蒐集的資料</h2>
-<ul>
-  <li><strong>位置資訊</strong>：在你授權後，用來將地圖定位到你附近、並查詢周邊的素食餐廳。位置僅在你使用當下用於查詢，<strong>不會上傳或儲存於我們的伺服器，也不會用來追蹤你的行蹤</strong>。你可隨時在系統設定關閉定位權限。</li>
-  <li><strong>帳號資訊</strong>：若你選擇註冊會員，我們透過後端服務（Supabase Auth）儲存你的電子郵件與加密後的密碼，用於登入與辨識你的貢獻。</li>
-  <li><strong>回報／投票資料</strong>：你對餐廳提交的回報（例如「已歇業」、分類更正）會與你的帳號關聯後儲存，用於群眾協作改善資料正確性。</li>
-</ul>
-<p>我們<strong>不會</strong>蒐集照片、精準行蹤軌跡或廣告識別碼。本 App <strong>不含廣告，也未內嵌第三方分析或追蹤 SDK</strong>。</p>
+  <!-- ===================== 中文 ===================== -->
+  <section id="zh">
+    <h2>中文</h2>
 
-<h2>二、資料如何使用</h2>
-<p>你的資料僅用於：顯示素食餐廳、支援會員協作更正資料、以及改善資料品質。我們<strong>不會將你的資料用於廣告，也不會販售或出租給第三方</strong>。</p>
+    <div class="card">
+      <strong>一句話總結：</strong>哈波蜜是一款眾包的蔬食餐廳地圖。你的位置只在查詢當下使用、<strong>不上傳也不儲存</strong>；帳號只透過 Apple 或 Google 登入，我們<strong>從不接觸你的密碼</strong>；你提交的餐廳回報會與帳號關聯保存，那是協作資料的一部分。本 App <strong>沒有廣告、沒有第三方分析或追蹤 SDK</strong>。
+    </div>
 
-<h2>三、第三方服務與資料來源</h2>
-<p>本 App 後端使用 <strong>Supabase</strong>（PostgreSQL 資料庫，資料存放於 AWS 東京區域）。餐廳基礎資料來源包含 OpenStreetMap 與政府開放資料。</p>
+    <h3>一、我們蒐集的資料</h3>
+    <ul>
+      <li><strong>位置資訊</strong>：在你授權後，用來把地圖定位到你附近、查詢周邊的蔬食餐廳。位置僅在你使用當下用於查詢，<strong>不會上傳或儲存於我們的伺服器，也不會用來追蹤你的行蹤</strong>。你可隨時在系統設定關閉定位權限；拒絕定位仍然可以使用地圖，只是需要自己移動視野。</li>
+      <li><strong>帳號資訊</strong>：登入方式只有 <strong>Sign in with Apple</strong> 與 <strong>Google 登入</strong>，兩者都是標準 OAuth。本 App <strong>沒有帳號密碼欄位，也從不接觸你的密碼</strong>。我們透過後端服務（Supabase Auth）保存的是你的電子郵件位址與該登入方式的識別資訊，用於辨識你的貢獻與投票身分。
+        <br>若你使用 Sign in with Apple 並選擇「隱藏我的電子郵件」，我們收到的會是 Apple 產生的<strong>轉發位址</strong>（<code>@privaterelay.appleid.com</code>），而不是你真正的信箱。</li>
+      <li><strong>回報／投票資料</strong>：你對餐廳提交的回報（新增、分類更正、「已歇業」等）與你投下的票會與你的帳號關聯後保存，用於群眾協作改善資料正確性，並用來分辨「兩個人同意」與「同一個人投兩次」。</li>
+      <li><strong>購買紀錄</strong>：若你購買會員等級，我們保存 Apple 提供的<strong>交易識別碼</strong>與購買的產品代號，以及你目前的會員等級。<strong>付款完全由 Apple 處理</strong>，開發者不會收到也無法存取你的信用卡或付款資訊。保存交易識別碼是為了避免同一筆交易被重複兌換。</li>
+    </ul>
+    <p>我們<strong>不會</strong>蒐集照片、精準行蹤軌跡或廣告識別碼。本 App <strong>不含廣告，也未內嵌第三方分析或追蹤 SDK</strong>。</p>
 
-<h2>四、資料保存與刪除</h2>
-<p>你可隨時在 App 內的「<strong>設定 → 刪除帳號</strong>」刪除自己的帳號，系統會一併移除你的所有回報紀錄，此動作無法復原。</p>
+    <h3>二、資料如何使用</h3>
+    <p>你的資料僅用於：顯示蔬食餐廳、支援會員協作更正資料、確保投票來自不同的人、以及改善資料品質。我們<strong>不會將你的資料用於廣告，也不會販售或出租給第三方</strong>。</p>
 
-<h2>五、兒童隱私</h2>
-<p>本 App 並非針對兒童設計，我們不會刻意蒐集兒童的個人資料。</p>
+    <h3>三、第三方服務與資料來源</h3>
+    <ul>
+      <li><strong>Supabase</strong>（PostgreSQL 資料庫與帳號服務，資料存放於 AWS 東京區域）——帳號、回報、投票、購買紀錄都保存在這裡。</li>
+      <li><strong>Apple</strong>——Sign in with Apple 的身分驗證，以及 App 內購買的付款處理。</li>
+      <li><strong>Google</strong>——Google 登入的身分驗證。</li>
+      <li><strong>餐廳基礎資料</strong>來源包含 OpenStreetMap 與政府開放資料，其後由使用者持續增補與更正。</li>
+    </ul>
 
-<h2>六、政策變更</h2>
-<p>我們可能不時更新本政策，更新後將於本頁面公布最新版本與生效日期。</p>
+    <h3>四、資料保存與刪除</h3>
+    <p>你可隨時在 App 內的「<strong>設定 → 刪除帳號</strong>」刪除自己的帳號，系統會一併移除你的所有回報紀錄，此動作<strong>無法復原</strong>。</p>
+    <p>若你的帳號連結了 Google，刪除時我們會一併嘗試撤銷該 Google 授權。<strong>Apple 端的授權則需要你自行移除</strong>：iOS「設定 → 你的名字 → 密碼與安全性 → 使用 Apple 帳號登入的 App」。這是刻意的取捨而非疏漏——你看得到的後果是：刪除帳號後若再次用 Apple 登入，系統不會重新詢問「分享或隱藏我的電子郵件」，而會沿用你上次的選擇。</p>
 
-<h2>七、聯絡我們</h2>
-<p>若對本政策有任何疑問，請來信：<a href="mailto:shinren.pan@gmail.com">shinren.pan@gmail.com</a></p>
+    <h3>五、兒童隱私</h3>
+    <p>本 App 並非針對兒童設計，我們不會刻意蒐集兒童的個人資料。</p>
+
+    <h3>六、政策變更</h3>
+    <p>我們可能不時更新本政策，更新後將於本頁面公布最新版本與更新日期。</p>
+
+    <h3>七、聯絡我們</h3>
+    <p>若對本政策有任何疑問，請來信：<a href="mailto:shinren.pan@gmail.com">shinren.pan@gmail.com</a>　·　<a href="./#zh">支援與常見問題</a></p>
+  </section>
+
+  <hr>
+
+  <!-- ===================== English ===================== -->
+  <section id="en">
+    <h2>English</h2>
+
+    <div class="card">
+      <strong>In one sentence:</strong> HerbMeet is a crowdsourced vegetarian restaurant map. Your location is used only for the search you are making — it is <strong>never uploaded or stored</strong>. Accounts exist only through Apple or Google sign-in, so we <strong>never handle your password</strong>. Reports you submit are stored against your account, because that is what collaborative data is. There are <strong>no ads and no third-party analytics or tracking SDKs</strong>.
+    </div>
+
+    <h3>1. What we collect</h3>
+    <ul>
+      <li><strong>Location</strong>: with your permission, to center the map near you and search for vegetarian places around you. It is used only for the search you are making and is <strong>not uploaded to or stored on our servers, nor used to track your movements</strong>. You can revoke the permission anytime in system settings; the map still works without it, you just move the view yourself.</li>
+      <li><strong>Account information</strong>: the only sign-in methods are <strong>Sign in with Apple</strong> and <strong>Google Sign-In</strong>, both standard OAuth. The app has <strong>no password field and never handles your password</strong>. Through our backend (Supabase Auth) we retain your email address and the identifier for that sign-in method, used to attribute your contributions and votes.
+        <br>If you use Sign in with Apple and choose "Hide My Email", what we receive is Apple's <strong>relay address</strong> (<code>@privaterelay.appleid.com</code>), not your real inbox.</li>
+      <li><strong>Reports and votes</strong>: what you submit about a restaurant (additions, tag corrections, closure reports) and the votes you cast are stored against your account — to improve the data collaboratively, and to tell "two people agreed" apart from "one person voted twice".</li>
+      <li><strong>Purchase records</strong>: if you buy a member level, we store the <strong>transaction identifier</strong> supplied by Apple, the product identifier, and your current level. <strong>Payment is handled entirely by Apple</strong>; the developer never receives or has access to your card or payment details. The transaction identifier is kept so the same purchase cannot be redeemed twice.</li>
+    </ul>
+    <p>We do <strong>not</strong> collect photos, precise movement history, or advertising identifiers. The app carries <strong>no ads and embeds no third-party analytics or tracking SDK</strong>.</p>
+
+    <h3>2. How data is used</h3>
+    <p>Your data is used only to: show vegetarian restaurants, let members collaboratively correct the data, ensure votes come from distinct people, and improve data quality. We <strong>do not use your data for advertising, and do not sell or rent it to anyone</strong>.</p>
+
+    <h3>3. Third parties and data sources</h3>
+    <ul>
+      <li><strong>Supabase</strong> (PostgreSQL database and auth service, hosted in the AWS Tokyo region) — accounts, reports, votes and purchase records are stored here.</li>
+      <li><strong>Apple</strong> — identity verification for Sign in with Apple, and payment processing for in-app purchases.</li>
+      <li><strong>Google</strong> — identity verification for Google Sign-In.</li>
+      <li><strong>Base restaurant data</strong> originates from OpenStreetMap and government open data, and is extended and corrected by users from there on.</li>
+    </ul>
+
+    <h3>4. Retention and deletion</h3>
+    <p>You can delete your account anytime under <strong>Settings → Delete Account</strong> in the app. This removes your account together with all of your reports, and <strong>cannot be undone</strong>.</p>
+    <p>If your account is linked to Google, deletion also attempts to revoke that Google grant. <strong>The Apple grant has to be removed by you</strong>, under iOS <em>Settings → your name → Sign-In &amp; Security → Sign in with Apple</em>. This is a deliberate trade-off rather than an oversight — the consequence you can see is that after deleting your account and signing in with Apple again, you are not asked again whether to share or hide your email; your previous choice is reused.</p>
+
+    <h3>5. Children</h3>
+    <p>This app is not directed at children, and we do not knowingly collect personal data from them.</p>
+
+    <h3>6. Changes to this policy</h3>
+    <p>We may update this policy from time to time. The current version and its update date are published on this page.</p>
+
+    <h3>7. Contact</h3>
+    <p>Questions about this policy? Email <a href="mailto:shinren.pan@gmail.com">shinren.pan@gmail.com</a>　·　<a href="./#en">Support &amp; FAQ</a></p>
+  </section>
+
+  <footer>© 2026 Shinren Pan · 哈波蜜 HerbMeet</footer>
+
+</div>
 </body>
 </html>
