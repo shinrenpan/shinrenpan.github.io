@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User Guide — SideBell</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6b6b70;
+    --line: #e3e3e6;
+    --accent: #0a63c9;
+    --card: #f7f7f8;
+    --warn-bg: #fff6e5;
+    --warn-line: #f0c674;
+    --warn-fg: #6b4a00;
+    --ok-bg: #e8f7ec;
+    --ok-line: #86cea0;
+    --ok-fg: #14532d;
+    --patient: #b23b5e;
+    --caregiver: #1663ad;
+    --patient-soft: #fdeef2;
+    --caregiver-soft: #eaf2fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1114;
+      --fg: #e9e9ea;
+      --muted: #9a9aa0;
+      --line: #26282a;
+      --accent: #5aa6f5;
+      --card: #171a1d;
+      --warn-bg: #2a2113;
+      --warn-line: #6b5320;
+      --warn-fg: #f0c674;
+      --ok-bg: #12241a;
+      --ok-line: #2c5c3c;
+      --ok-fg: #7fd9a0;
+      --patient: #f08faa;
+      --caregiver: #6fb2f0;
+      --patient-soft: #241419;
+      --caregiver-soft: #121c26;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 8px; }
+  h1 { font-size: 1.6rem; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 0.9rem; }
+  .lang { margin: 14px 0 0; font-size: 0.9rem; }
+  a { color: var(--accent); }
+
+  .section-head { border-radius: 14px; padding: 18px 20px; margin: 56px 0 8px; }
+  .section-head.patient { background: var(--patient-soft); border: 1px solid var(--patient); }
+  .section-head.caregiver { background: var(--caregiver-soft); border: 1px solid var(--caregiver); }
+  .section-head h2 { margin: 0; font-size: 1.35rem; border: none; padding: 0; }
+  .section-head.patient h2 { color: var(--patient); }
+  .section-head.caregiver h2 { color: var(--caregiver); }
+  .section-head .who { margin: 4px 0 0; font-size: 0.92rem; color: var(--muted); }
+
+  h2 { font-size: 1.3rem; margin: 48px 0 4px; padding-top: 24px; border-top: 1px solid var(--line); }
+  h3 { font-size: 1.08rem; margin: 34px 0 4px; }
+  h3 .step {
+    display: inline-block;
+    min-width: 1.8em; height: 1.8em; line-height: 1.8em;
+    text-align: center; border-radius: 50%;
+    font-size: 0.82em; margin-right: 8px; vertical-align: 1px;
+    color: #fff;
+  }
+  .patient-scope h3 .step { background: var(--patient); }
+  .caregiver-scope h3 .step { background: var(--caregiver); }
+  h4 { font-size: 1rem; margin: 28px 0 4px; }
+
+  p, li { color: var(--fg); }
+  ul, ol { padding-left: 1.3em; }
+  li { margin: 6px 0; }
+  .muted { color: var(--muted); }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 20px 0; }
+  .warn { background: var(--warn-bg); border: 1px solid var(--warn-line); color: var(--warn-fg); border-radius: 12px; padding: 14px 16px; margin: 20px 0; }
+  .warn a { color: inherit; }
+  .ok { background: var(--ok-bg); border: 1px solid var(--ok-line); color: var(--ok-fg); border-radius: 12px; padding: 14px 16px; margin: 20px 0; }
+
+  figure { margin: 20px 0; }
+  figure img { display: block; max-width: 100%; border: 1px solid var(--line); border-radius: 14px; }
+  figure.phone img { width: 280px; }
+  figure.pad img { width: 420px; }
+  figcaption { color: var(--muted); font-size: 0.86rem; margin-top: 8px; max-width: 420px; }
+  .row { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .row figure { margin: 0; }
+  .row figcaption { max-width: 280px; }
+
+  .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.rules { min-width: 460px; border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.95rem; }
+  table.rules th, table.rules td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+  table.rules th { background: var(--card); font-weight: 600; }
+  table.rules td.yes { color: var(--ok-fg); font-weight: 600; }
+
+  kbd { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 0.9em; font-family: inherit; }
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 64px; border-top: 1px solid var(--line); padding-top: 20px; }
+  .toc { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px 16px 20px; margin: 24px 0; }
+  .toc > strong { display: block; margin-bottom: 6px; }
+  .toc ul { list-style: none; padding-left: 0; margin: 0; }
+  .toc > ul > li { margin: 10px 0 0; }
+  .toc ul ul { padding-left: 1.1em; margin: 2px 0 0; }
+  .toc ul ul li { margin: 2px 0; font-size: 0.94rem; }
+  .toc .tag { font-weight: 600; }
+  .toc .tag.patient { color: var(--patient); }
+  .toc .tag.caregiver { color: var(--caregiver); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>SideBell · User Guide</h1>
+    <div class="sub">One app, two devices, each playing one role</div>
+    <div class="lang"><a href="../zhTW/">中文</a> · <strong>English</strong></div>
+  </header>
+
+  <p>The caregiver sets up both devices; the patient only has to tap a cell. <strong>The two chapters are independent — read the one for whichever device is in your hands. Set up the patient side first</strong>, so the connection comes up while you are setting up the second device.</p>
+
+  <div class="warn">
+    SideBell is a <strong>care assistance calling tool. It cannot replace emergency medical alert services.</strong> In an emergency, call your local emergency number. It works over Bluetooth, so its range is limited; it cannot send calls when the app is closed or the device runs out of battery.
+  </div>
+
+  <div class="toc">
+    <strong>Contents</strong>
+    <ul>
+      <li><a href="#before">Before you start</a></li>
+      <li>
+        <span class="tag patient">Chapter 1 · Patient side</span> (the one beside the bed)
+        <ul>
+          <li><a href="#p1">Confirm the notice, allow Bluetooth</a></li>
+          <li><a href="#p2">Choose the role</a></li>
+          <li><a href="#p3">The main screen</a></li>
+          <li><a href="#p4">Add the items this home needs</a></li>
+          <li><a href="#p5">After a cell is tapped</a></li>
+        </ul>
+      </li>
+      <li>
+        <span class="tag caregiver">Chapter 2 · Caregiver side</span> (the one you carry)
+        <ul>
+          <li><a href="#c1">Confirm the notice, allow Bluetooth</a></li>
+          <li><a href="#c2">Choose the role</a></li>
+          <li><a href="#c3">Allow notifications</a></li>
+          <li><a href="#c4">Check that they are connected</a></li>
+          <li><a href="#c5">When a call arrives</a></li>
+        </ul>
+      </li>
+      <li><a href="#rules">Two rules</a></li>
+      <li><a href="#trouble">If something is wrong</a></li>
+    </ul>
+  </div>
+
+
+  <!-- ================================================= -->
+  <h2 id="before">Before you start</h2>
+
+  <ul>
+    <li><strong>Two Apple devices</strong> — one beside the bed (an iPad works best; the cells are large and easy to hit), one carried by the caregiver (usually an iPhone).</li>
+    <li><strong>SideBell installed on both.</strong> It is the same app; each device picks its role after installation.</li>
+    <li><strong>They cannot be too far apart.</strong> Only testing in your own home will tell you the real range — walls and floors both matter. Once you are set up, walk around and try it from the places you actually use.</li>
+  </ul>
+
+  <div class="ok">
+    <strong>Not needed:</strong> internet, Wi-Fi, an account, a subscription — and <strong>no pairing in iOS Settings → Bluetooth</strong>. SideBell finds the other device by itself.
+  </div>
+
+
+  <!-- ================================================================ -->
+  <!-- ==================== Chapter 1 · Patient ===================== -->
+  <!-- ================================================================ -->
+  <div class="section-head patient">
+    <h2 id="patient">Chapter 1 · Patient side</h2>
+    <p class="who">The device beside the patient. Once set up it stays on, and the patient only taps cells.</p>
+  </div>
+
+  <div class="patient-scope">
+
+  <h3 id="p1"><span class="step">1</span>Confirm the notice, allow Bluetooth</h3>
+
+  <p>Open SideBell. The two role cards at the bottom are greyed out and will not respond.</p>
+
+  <figure class="pad">
+    <img src="../img/en/p-01-disclaimer.png" alt="The notice screen with an unchecked checkbox and an orange warning, above two greyed-out role cards">
+    <figcaption>The orange line reads “Please confirm the notice above before choosing a role.”</figcaption>
+  </figure>
+
+  <div class="warn">
+    <strong>Tick “I understand the notice above” first.</strong> Only then do the cards become tappable. Tapping a card before that does nothing — it is not frozen.
+  </div>
+
+  <p>The moment you tick it, the Bluetooth request appears.</p>
+
+  <figure class="pad">
+    <img src="../img/en/p-02-bluetooth.png" alt="iOS asking whether to allow SideBell to find Bluetooth devices">
+    <figcaption>Tap <strong>Allow</strong>. Bluetooth is the only way calls travel; “Don’t Allow” makes the app unusable.</figcaption>
+  </figure>
+
+  <p class="muted">The patient side needs only this one permission. The caregiver side also asks for notifications.</p>
+
+
+  <h3 id="p2"><span class="step">2</span>Choose the role</h3>
+
+  <figure class="pad">
+    <img src="../img/en/p-01b-checked.png" alt="The notice screen after ticking, with the checkbox and warning gone and both role cards now blue">
+    <figcaption>Blue cards can be tapped. The checkbox and the orange line collapse away — that whole block disappearing is normal.</figcaption>
+  </figure>
+
+  <p>Choose <strong>Patient</strong>. If you pick the wrong one, you can switch it later in Settings.</p>
+
+
+  <h3 id="p3"><span class="step">3</span>The main screen</h3>
+
+  <figure class="pad">
+    <img src="../img/en/p-03-connected.png" alt="Patient main screen with a green Connected indicator and two large cells, Discomfort and Water">
+    <figcaption>This is where the patient side stays. Leave it running.</figcaption>
+  </figure>
+
+  <p>The connection state is in the top-left corner. <strong>The screenshot above shows it once both devices are ready.</strong> At this point in your own setup the caregiver side does not exist yet, so it will read <strong>Not connected</strong> in orange — that is expected. It turns green once the second device is done.</p>
+
+  <div class="ok">
+    <strong>One tap sends a call. There is no confirmation step.</strong> If sending a call took two taps or a long press, someone who can only use Eye Tracking could not call for help.
+  </div>
+
+
+  <h3 id="p4"><span class="step">4</span>Add the items this home needs</h3>
+
+  <p>Only <strong>Discomfort</strong> and <strong>Water</strong> are there by default. Turn over, suction, bathroom, air conditioning, just want to talk — every household needs something different, and you can add your own.</p>
+
+  <h4>Opening Settings takes two taps</h4>
+
+  <p>Tapping <strong>Settings</strong> in the top-right corner once turns it into an orange <strong>Tap again</strong>. A second tap within three seconds actually opens it.</p>
+
+  <figure class="pad">
+    <img src="../img/en/p-06-tap-again.png" alt="The top-right button on the patient screen showing the orange Tap again label">
+    <figcaption>If the second tap does not come within three seconds, it reverts to “Settings”.</figcaption>
+  </figure>
+
+  <p class="muted">This exists to block accidental activation by Eye Tracking — a patient who lands in Settings by mistake may not be able to get back out on their own.</p>
+
+  <h4>Edit call items</h4>
+
+  <div class="row">
+    <figure class="pad">
+      <img src="../img/en/p-07-settings.png" alt="Patient settings screen listing Role, Edit call items and Switch role">
+      <figcaption>Choose <strong>Edit call items</strong>.</figcaption>
+    </figure>
+    <figure class="pad">
+      <img src="../img/en/p-08-edit-items.png" alt="Edit call items screen listing Discomfort and Water">
+      <figcaption>Tap an item’s name to rename it.</figcaption>
+    </figure>
+  </div>
+
+  <div class="warn">
+    <strong>“Discomfort” is always first and cannot be removed.</strong> It is the urgent call, and the caregiver’s alert behaves differently for it — see <a href="#rules">Two rules</a>.
+  </div>
+
+  <h4>Adding an item</h4>
+
+  <div class="row">
+    <figure class="pad">
+      <img src="../img/en/p-10-add-item.png" alt="New item dialog asking what should the patient be able to ask for, with Turn over typed in">
+      <figcaption>Tap <kbd>+</kbd>, type a name, tap <strong>Add</strong>.</figcaption>
+    </figure>
+    <figure class="pad">
+      <img src="../img/en/p-11-items-three.png" alt="Edit call items list now showing Discomfort, Water and Turn over">
+      <figcaption>The list after adding.</figcaption>
+    </figure>
+  </div>
+
+  <div class="card">
+    <strong>Name items the way the patient would say them.</strong> These words are <strong>read aloud</strong> by the caregiver’s phone — “Turn over” beats “Reposition”, “Can’t breathe well” beats “Respiratory distress”.
+  </div>
+
+  <h4>Reordering and removing</h4>
+
+  <figure class="pad">
+    <img src="../img/en/p-09-edit-mode.png" alt="Edit mode with red minus buttons beside Water and Turn over and drag handles on the right">
+    <figcaption>Tap <strong>Edit</strong> in the top-left to drag items into order or remove them. “Discomfort” has no minus button because it cannot be removed.</figcaption>
+  </figure>
+
+  <h4>After adding</h4>
+
+  <figure class="pad">
+    <img src="../img/en/p-12-grid-three.png" alt="Patient main screen with three cells, Discomfort and Water on the top row and Turn over below">
+    <figcaption>Changes apply right away — no restart needed.</figcaption>
+  </figure>
+
+  <div class="card">
+    <strong>Start with three or four cells.</strong> The more cells there are, the smaller each one gets, and that is a real barrier for someone with limited hand control or using Eye Tracking. Live with it for a while before deciding what else is genuinely needed.
+  </div>
+
+  <h3 id="p5"><span class="step">5</span>After a cell is tapped</h3>
+
+  <p>One of three states appears under the cell:</p>
+
+  <div class="row">
+    <figure class="pad">
+      <img src="../img/en/p-04-waiting.png" alt="A clock icon and the word Waiting under the Discomfort cell">
+      <figcaption><strong>Waiting</strong> — sent, awaiting the caregiver.</figcaption>
+    </figure>
+    <figure class="pad">
+      <img src="../img/en/p-05-acknowledged.png" alt="A green check and the word Acknowledged under the Discomfort cell">
+      <figcaption><strong>Acknowledged</strong> — the caregiver tapped “Got it”.</figcaption>
+    </figure>
+  </div>
+
+  <figure class="pad">
+    <img src="../img/en/p-13-no-response.png" alt="An orange cross and the words No response under the Water cell">
+    <figcaption><strong>No response</strong> — three minutes passed with nobody tapping “Got it”.</figcaption>
+  </figure>
+
+  <p class="muted">“No response” does not mean “not delivered”. The call may well have reached the caregiver’s phone and set off the alert — they were simply asleep or out of the room. What it means for the patient is the same either way: <strong>this route is not working right now, try another way to get help.</strong></p>
+
+  <div class="ok">
+    For someone who cannot ask a second time, <strong>knowing whether they were heard</strong> matters as much as the call itself. The state is written on the cell; nobody has to be asked.
+  </div>
+
+  </div><!-- /patient-scope -->
+
+
+  <!-- ================================================================ -->
+  <!-- =================== Chapter 2 · Caregiver ==================== -->
+  <!-- ================================================================ -->
+  <div class="section-head caregiver">
+    <h2 id="caregiver">Chapter 2 · Caregiver side</h2>
+    <p class="who">The device the caregiver carries, usually a phone. This is where calls ring.</p>
+  </div>
+
+  <div class="caregiver-scope">
+
+  <h3 id="c1"><span class="step">1</span>Confirm the notice, allow Bluetooth</h3>
+
+  <p>Same as the patient side: <strong>tick “I understand the notice above”</strong> before the role cards become tappable.</p>
+
+  <div class="row">
+    <figure class="phone">
+      <img src="../img/en/c-01-disclaimer.png" alt="The notice screen on iPhone with an orange line asking to confirm the notice above">
+      <figcaption>Until it is ticked, the cards do not respond.</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="../img/en/c-02-bluetooth.png" alt="iOS on iPhone asking whether to allow SideBell to find Bluetooth devices">
+      <figcaption>It appears the moment you tick. Tap <strong>Allow</strong>.</figcaption>
+    </figure>
+  </div>
+
+
+  <h3 id="c2"><span class="step">2</span>Choose the role</h3>
+
+  <p>Choose <strong>Caregiver</strong>.</p>
+
+
+  <h3 id="c3"><span class="step">3</span>Allow notifications</h3>
+
+  <p>Once the call list opens, iOS asks a second time. <strong>The caregiver side needs this one extra permission.</strong></p>
+
+  <figure class="phone">
+    <img src="../img/en/c-03-notifications.png" alt="iOS asking whether to allow SideBell to send notifications">
+    <figcaption>Tap <strong>Allow</strong>.</figcaption>
+  </figure>
+
+  <div class="warn">
+    <strong>Notifications must be allowed.</strong> When the phone is locked and in a pocket, notifications are how a call surfaces. Without them, you only see calls if the app happens to be open.
+  </div>
+
+
+  <h3 id="c4"><span class="step">4</span>Check that they are connected</h3>
+
+  <div class="ok">
+    <strong>No pairing, no codes, and nothing to find in iOS Settings → Bluetooth</strong> (it is not listed there, and that is correct). With both apps open and the devices close enough, they connect on their own.
+  </div>
+
+  <div class="row">
+    <figure class="phone">
+      <img src="../img/en/c-04-disconnected.png" alt="Caregiver call list with an orange Not connected indicator">
+      <figcaption>Before connecting</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="../img/en/c-05-connected.png" alt="Caregiver call list with a green Connected indicator">
+      <figcaption>After connecting. It usually takes a few seconds.</figcaption>
+    </figure>
+  </div>
+
+  <p>Check the patient side too — its top-left corner should have turned green as well. <strong>Both devices green means it is genuinely working.</strong> If it is still orange after a minute, see <a href="#trouble">If something is wrong</a>.</p>
+
+
+  <h3 id="c5"><span class="step">5</span>When a call arrives</h3>
+
+  <p>The phone <strong>raises an alarm and says the item name aloud</strong>, so you know what is needed without looking at the screen.</p>
+
+  <h4>While the phone is not in use</h4>
+
+  <div class="row">
+    <figure class="phone">
+      <img src="../img/en/c-10-lockscreen.png" alt="A Discomfort notification on the iPhone lock screen, sent from the patient iPad, with a silent-mode icon in the status bar">
+      <figcaption>Locked screen: the notification appears on the lock screen.</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="../img/en/c-12-banner.png" alt="A Discomfort notification banner at the top of the iPhone home screen">
+      <figcaption>Elsewhere: it drops down as a banner.</figcaption>
+    </figure>
+  </div>
+
+  <div class="ok">
+    <strong>The ring switch does not silence SideBell’s alert.</strong> <span class="muted">The status bar in the left screenshot shows the silent-mode icon, and the call came through anyway.</span>
+  </div>
+
+  <h4>Responding</h4>
+
+  <div class="row">
+    <figure class="phone">
+      <img src="../img/en/c-06-call-received.png" alt="Caregiver side showing a Water call with a blue Got it button on the right">
+      <figcaption>Tap the blue <strong>Got it</strong>.</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="../img/en/c-07-acknowledged.png" alt="After tapping Got it, a green check with the time">
+      <figcaption>The patient side shows <strong>Acknowledged</strong> at the same moment.</figcaption>
+    </figure>
+  </div>
+
+  <h4>What the list looks like</h4>
+
+  <figure class="phone">
+    <img src="../img/en/c-11-call-list.png" alt="Caregiver list showing Discomfort acknowledged, Water no response, and Discomfort acknowledged, with red warning icons beside the urgent items">
+    <figcaption>Every call carries its own state and time. <strong>“Discomfort” has a red warning icon</strong>, so urgent calls are distinguishable at a glance.</figcaption>
+  </figure>
+
+  </div><!-- /caregiver-scope -->
+
+
+  <!-- ================================================= -->
+  <h2 id="rules">Two rules</h2>
+
+  <div class="tablewrap">
+  <table class="rules">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Discomfort<br><span class="muted" style="font-weight:400;font-size:0.9em;">the urgent call</span></th>
+        <th>Every other item</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>The caregiver’s alert</strong></td>
+        <td class="yes">Repeats until someone taps “Got it” or three minutes pass</td>
+        <td>Sounds once</td>
+      </tr>
+      <tr>
+        <td><strong>Three minutes with no answer</strong></td>
+        <td class="yes">Becomes “No response”</td>
+        <td class="yes">Also becomes “No response”</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p><strong>Only “Discomfort” repeats; the three-minute deadline applies to every call.</strong> In the “No response” screenshot above, the cell is “Water”.</p>
+
+
+  <!-- ================================================= -->
+  <h2 id="trouble">If something is wrong</h2>
+
+  <h3>It keeps saying “Not connected”</h3>
+
+  <ol>
+    <li><strong>Is SideBell open on both devices?</strong> Swiping the app away from the app switcher stops it working.</li>
+    <li><strong>Is Bluetooth on for both?</strong> Check iOS Control Centre.</li>
+    <li><strong>Too far apart?</strong> Put the devices side by side first to confirm they connect, then move them apart to find the range that actually works in your home.</li>
+    <li><strong>Did both pick the same role?</strong> Two Caregiver devices will never connect. Check the <strong>Role</strong> row in Settings.</li>
+  </ol>
+
+  <h3>It stays on “Waiting”</h3>
+
+  <p>The call went out, but the caregiver has not tapped “Got it” yet. After three minutes it becomes “No response”.</p>
+
+  <h3>“Don’t Allow” was tapped by mistake</h3>
+
+  <p>iOS only asks once, and the app will never prompt again. Open iOS <strong>Settings</strong>, scroll down to <strong>SideBell</strong>, and turn <strong>Bluetooth</strong> on — plus <strong>Notifications</strong> on the caregiver side.</p>
+
+  <h3>Changing devices or swapping roles</h3>
+
+  <p>Tap the red <strong>Switch role</strong> in Settings. <strong>Switching roles stops the current connection</strong>, so check both devices again afterwards.</p>
+
+  <figure class="phone">
+    <img src="../img/en/c-08-settings.png" alt="Caregiver settings screen listing Role, Support the developer and Switch role">
+    <figcaption>Caregiver settings. The patient side has no “Support the developer” entry — there is nothing purchase-related on the patient side at all.</figcaption>
+  </figure>
+
+
+  <!-- ================================================= -->
+  <h2>Still stuck?</h2>
+
+  <p>Email <a href="mailto:shinren.pan@gmail.com">shinren.pan@gmail.com</a>, or read the source on <a href="https://github.com/shinrenpan/SideBell">GitHub</a>. “Support the developer” inside the app is an optional tip that <strong>unlocks nothing</strong>.</p>
+
+  <div class="warn">
+    SideBell cannot replace emergency medical alert services; in an emergency, call your local emergency number. Before relying on it, test it together with the person you care for, in the places you will actually use it.
+  </div>
+
+  <footer>
+    © 2026 Shinren Pan · SideBell ·
+    <a href="../../">Home</a> ·
+    <a href="../../privacy/">Privacy Policy</a>
+  </footer>
+
+</div>
+</body>
+</html>

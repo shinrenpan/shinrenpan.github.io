@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用教學 — SideBell 隨身鈴</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6b6b70;
+    --line: #e3e3e6;
+    --accent: #0a63c9;
+    --card: #f7f7f8;
+    --warn-bg: #fff6e5;
+    --warn-line: #f0c674;
+    --warn-fg: #6b4a00;
+    --ok-bg: #e8f7ec;
+    --ok-line: #86cea0;
+    --ok-fg: #14532d;
+    --patient: #b23b5e;
+    --caregiver: #1663ad;
+    --patient-soft: #fdeef2;
+    --caregiver-soft: #eaf2fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1114;
+      --fg: #e9e9ea;
+      --muted: #9a9aa0;
+      --line: #26282a;
+      --accent: #5aa6f5;
+      --card: #171a1d;
+      --warn-bg: #2a2113;
+      --warn-line: #6b5320;
+      --warn-fg: #f0c674;
+      --ok-bg: #12241a;
+      --ok-line: #2c5c3c;
+      --ok-fg: #7fd9a0;
+      --patient: #f08faa;
+      --caregiver: #6fb2f0;
+      --patient-soft: #241419;
+      --caregiver-soft: #121c26;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 8px; }
+  h1 { font-size: 1.6rem; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 0.9rem; }
+  .lang { margin: 14px 0 0; font-size: 0.9rem; }
+  a { color: var(--accent); }
+
+  .section-head { border-radius: 14px; padding: 18px 20px; margin: 56px 0 8px; }
+  .section-head.patient { background: var(--patient-soft); border: 1px solid var(--patient); }
+  .section-head.caregiver { background: var(--caregiver-soft); border: 1px solid var(--caregiver); }
+  .section-head h2 { margin: 0; font-size: 1.35rem; border: none; padding: 0; }
+  .section-head.patient h2 { color: var(--patient); }
+  .section-head.caregiver h2 { color: var(--caregiver); }
+  .section-head .who { margin: 4px 0 0; font-size: 0.92rem; color: var(--muted); }
+
+  h2 { font-size: 1.3rem; margin: 48px 0 4px; padding-top: 24px; border-top: 1px solid var(--line); }
+  h3 { font-size: 1.08rem; margin: 34px 0 4px; }
+  h3 .step {
+    display: inline-block;
+    min-width: 1.8em; height: 1.8em; line-height: 1.8em;
+    text-align: center; border-radius: 50%;
+    font-size: 0.82em; margin-right: 8px; vertical-align: 1px;
+    color: #fff;
+  }
+  .patient-scope h3 .step { background: var(--patient); }
+  .caregiver-scope h3 .step { background: var(--caregiver); }
+  h4 { font-size: 1rem; margin: 28px 0 4px; }
+
+  p, li { color: var(--fg); }
+  ul, ol { padding-left: 1.3em; }
+  li { margin: 6px 0; }
+  .muted { color: var(--muted); }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 20px 0; }
+  .warn { background: var(--warn-bg); border: 1px solid var(--warn-line); color: var(--warn-fg); border-radius: 12px; padding: 14px 16px; margin: 20px 0; }
+  .warn a { color: inherit; }
+  .ok { background: var(--ok-bg); border: 1px solid var(--ok-line); color: var(--ok-fg); border-radius: 12px; padding: 14px 16px; margin: 20px 0; }
+
+  figure { margin: 20px 0; }
+  figure img { display: block; max-width: 100%; border: 1px solid var(--line); border-radius: 14px; }
+  figure.phone img { width: 280px; }
+  figure.pad img { width: 420px; }
+  figcaption { color: var(--muted); font-size: 0.86rem; margin-top: 8px; max-width: 420px; }
+  .row { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .row figure { margin: 0; }
+  .row figcaption { max-width: 280px; }
+
+  .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.rules { min-width: 460px; border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.95rem; }
+  table.rules th, table.rules td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+  table.rules th { background: var(--card); font-weight: 600; }
+  table.rules td.yes { color: var(--ok-fg); font-weight: 600; }
+
+  kbd { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 0.9em; font-family: inherit; }
+  code { background: var(--card); padding: 1px 5px; border-radius: 5px; font-size: 0.9em; }
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 64px; border-top: 1px solid var(--line); padding-top: 20px; }
+  .toc { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px 16px 20px; margin: 24px 0; }
+  .toc > strong { display: block; margin-bottom: 6px; }
+  .toc ul { list-style: none; padding-left: 0; margin: 0; }
+  .toc > ul > li { margin: 10px 0 0; }
+  .toc ul ul { padding-left: 1.1em; margin: 2px 0 0; }
+  .toc ul ul li { margin: 2px 0; font-size: 0.94rem; }
+  .toc .tag { font-weight: 600; }
+  .toc .tag.patient { color: var(--patient); }
+  .toc .tag.caregiver { color: var(--caregiver); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>SideBell 隨身鈴 · 使用教學</h1>
+    <div class="sub">一個 App，兩台裝置各扮演一個角色</div>
+    <div class="lang"><strong>中文</strong> · <a href="../en/">English</a></div>
+  </header>
+
+  <p>兩台裝置都由照顧者設定，患者只需要按格子。<strong>兩章各自獨立，手上拿哪一台就看哪一章。先設定患者端</strong>，這樣設定第二台時連線會當場接上。</p>
+
+  <div class="warn">
+    SideBell 是<strong>照護輔助呼叫工具，不能取代緊急醫療警報服務</strong>。緊急狀況請撥打 119。本 App 透過藍牙運作，距離有限；App 被關閉或裝置沒電時無法傳送呼叫。
+  </div>
+
+  <div class="toc">
+    <strong>目錄</strong>
+    <ul>
+      <li><a href="#before">開始之前</a></li>
+      <li>
+        <span class="tag patient">第一章 · 患者端</span>（床邊那台）
+        <ul>
+          <li><a href="#p1">勾選說明，允許藍牙</a></li>
+          <li><a href="#p2">選擇角色</a></li>
+          <li><a href="#p3">主畫面</a></li>
+          <li><a href="#p4">加入需要的項目</a></li>
+          <li><a href="#p5">按下格子之後</a></li>
+        </ul>
+      </li>
+      <li>
+        <span class="tag caregiver">第二章 · 照顧者端</span>（隨身帶的那台）
+        <ul>
+          <li><a href="#c1">勾選說明，允許藍牙</a></li>
+          <li><a href="#c2">選擇角色</a></li>
+          <li><a href="#c3">允許通知</a></li>
+          <li><a href="#c4">確認連上了</a></li>
+          <li><a href="#c5">收到呼叫時</a></li>
+        </ul>
+      </li>
+      <li><a href="#rules">兩條規則</a></li>
+      <li><a href="#trouble">遇到問題</a></li>
+    </ul>
+  </div>
+
+
+  <!-- ================================================= -->
+  <h2 id="before">開始之前</h2>
+
+  <ul>
+    <li><strong>兩台 Apple 裝置</strong>——床邊一台（iPad 最合適，格子大好按），照顧者隨身一台（通常是 iPhone）。</li>
+    <li><strong>兩台都安裝 SideBell</strong>，同一個 App，裝好之後才各自選角色。</li>
+    <li><strong>兩台距離不能太遠</strong>。實際能用的範圍要在你家測過才知道，牆壁與樓層都會影響——設定完請務必實際走幾個位置試試。</li>
+  </ul>
+
+  <div class="ok">
+    <strong>不需要：</strong>網路、Wi-Fi、註冊帳號、訂閱，<strong>也不需要在 iOS 的「設定 → 藍牙」裡配對</strong>。SideBell 會自己找到另一台。
+  </div>
+
+
+  <!-- ================================================================ -->
+  <!-- ======================== 第一章 患者端 ======================== -->
+  <!-- ================================================================ -->
+  <div class="section-head patient">
+    <h2 id="patient">第一章 · 患者端</h2>
+    <p class="who">放在患者身邊的那台。設定好之後就一直開著，患者只需要按格子。</p>
+  </div>
+
+  <div class="patient-scope">
+
+  <h3 id="p1"><span class="step">1</span>勾選說明，允許藍牙</h3>
+
+  <p>打開 SideBell，底下兩張角色卡片是灰的、按不動。</p>
+
+  <figure class="pad">
+    <img src="../img/zhTW/p-01-disclaimer.png" alt="說明畫面，下方有未勾選的核取方塊與橘色提示，再下方是兩張灰掉的角色卡片">
+    <figcaption>橘字寫著「請先確認上方說明，才能選擇角色」。</figcaption>
+  </figure>
+
+  <div class="warn">
+    <strong>先勾選「我已了解上述說明」</strong>，卡片才會變成可以按。直接點卡片沒有反應，那不是當機。
+  </div>
+
+  <p>勾選的那一刻，藍牙詢問會跳出來。</p>
+
+  <figure class="pad">
+    <img src="../img/zhTW/p-02-bluetooth.png" alt="iOS 系統詢問是否允許 SideBell 尋找藍牙裝置">
+    <figcaption>按<strong>「允許」</strong>。藍牙是唯一的傳送方式，按「不允許」App 就不能用。</figcaption>
+  </figure>
+
+  <p class="muted">患者端只有這一個權限，照顧者端會多一個「通知」。</p>
+
+
+  <h3 id="p2"><span class="step">2</span>選擇角色</h3>
+
+  <figure class="pad">
+    <img src="../img/zhTW/p-01b-checked.png" alt="勾選之後的說明畫面，核取方塊與提示消失，兩張角色卡片變成藍色">
+    <figcaption>卡片變藍就可以按了。核取方塊和那行橘字會一起收起來，整塊不見是正常的。</figcaption>
+  </figure>
+
+  <p>選<strong>「患者端」</strong>。選錯了可以在設定裡切換。</p>
+
+
+  <h3 id="p3"><span class="step">3</span>主畫面</h3>
+
+  <figure class="pad">
+    <img src="../img/zhTW/p-03-connected.png" alt="患者端主畫面，左上角綠色已連線，畫面上是不舒服與喝水兩個大格子">
+    <figcaption>患者端平常就停在這個畫面，讓它一直開著。</figcaption>
+  </figure>
+
+  <p>左上角是連線狀態。<strong>上圖是兩台都設定好之後的樣子</strong>；你現在照顧者端還沒設定，所以那裡會是橘色的「未連線」——那是正常的，等第二台設定完就會變綠。</p>
+
+  <div class="ok">
+    <strong>格子按一下就送出，沒有確認步驟。</strong>如果送出呼叫需要按兩次或長按，只能用眼球控制的人就沒辦法求救。
+  </div>
+
+
+  <h3 id="p4"><span class="step">4</span>加入需要的項目</h3>
+
+  <p>預設只有「不舒服」和「喝水」。翻身、抽痰、上廁所、開冷氣、想聊天——每個家庭需要的不一樣，都可以自己加。</p>
+
+  <h4>進入設定要連按兩次</h4>
+
+  <p>右上角的「設定」按第一次會變成橘色的「再按一次」，三秒內再按一次才會進去。</p>
+
+  <figure class="pad">
+    <img src="../img/zhTW/p-06-tap-again.png" alt="患者端主畫面右上角的按鈕變成橘色的再按一次">
+    <figcaption>三秒內沒有再按，就會自己變回「設定」。</figcaption>
+  </figure>
+
+  <p class="muted">這是為了擋住眼控誤觸——患者被自己不小心帶進設定畫面之後，可能沒有能力自己回來。</p>
+
+  <h4>編輯呼叫項目</h4>
+
+  <div class="row">
+    <figure class="pad">
+      <img src="../img/zhTW/p-07-settings.png" alt="患者端設定畫面，有角色、編輯呼叫項目、切換角色三個項目">
+      <figcaption>選「編輯呼叫項目」。</figcaption>
+    </figure>
+    <figure class="pad">
+      <img src="../img/zhTW/p-08-edit-items.png" alt="編輯呼叫項目畫面，列出不舒服與喝水">
+      <figcaption>點一下項目名稱可以重新命名。</figcaption>
+    </figure>
+  </div>
+
+  <div class="warn">
+    <strong>「不舒服」永遠在第一格，不能刪除。</strong>它是緊急呼叫，警報行為跟其他項目不同——見<a href="#rules">兩條規則</a>。
+  </div>
+
+  <h4>新增項目</h4>
+
+  <div class="row">
+    <figure class="pad">
+      <img src="../img/zhTW/p-10-add-item.png" alt="新增呼叫項目的對話框，提示文字為你想讓患者能夠表達什麼，輸入框內有翻身兩字">
+      <figcaption>按右上角的 <kbd>+</kbd>，輸入名稱，按「新增」。</figcaption>
+    </figure>
+    <figure class="pad">
+      <img src="../img/zhTW/p-11-items-three.png" alt="編輯呼叫項目清單，現在有不舒服、喝水、翻身三項">
+      <figcaption>加好之後的清單。</figcaption>
+    </figure>
+  </div>
+
+  <div class="card">
+    <strong>用患者自己會說的話取名。</strong>這些字會被照顧者的手機唸出聲音——「翻身」比「更換臥位」好，「悶」比「呼吸不適」好。
+  </div>
+
+  <h4>排序與刪除</h4>
+
+  <figure class="pad">
+    <img src="../img/zhTW/p-09-edit-mode.png" alt="編輯模式，喝水與翻身左側出現紅色減號，右側出現拖曳把手">
+    <figcaption>按左上角「編輯」後可以拖曳排序或刪除。「不舒服」沒有減號，因為不能刪。</figcaption>
+  </figure>
+
+  <h4>加完之後</h4>
+
+  <figure class="pad">
+    <img src="../img/zhTW/p-12-grid-three.png" alt="患者端主畫面變成三格，不舒服與喝水在上排，翻身在左下">
+    <figcaption>變更立刻生效，不用重新啟動。</figcaption>
+  </figure>
+
+  <div class="card">
+    <strong>先從三到四格開始。</strong>格子越多每格越小，對手指不靈活或使用眼球控制的人是實際的障礙。用一陣子再看真正需要什麼。
+  </div>
+
+  <h3 id="p5"><span class="step">5</span>按下格子之後</h3>
+
+  <p>格子下方會顯示三種狀態之一：</p>
+
+  <div class="row">
+    <figure class="pad">
+      <img src="../img/zhTW/p-04-waiting.png" alt="患者端不舒服格子下方顯示時鐘圖示與等待中">
+      <figcaption><strong>等待中</strong>——已送出，等照顧者回應。</figcaption>
+    </figure>
+    <figure class="pad">
+      <img src="../img/zhTW/p-05-acknowledged.png" alt="患者端不舒服格子下方顯示綠色勾與已確認">
+      <figcaption><strong>已確認</strong>——照顧者按下「已收到」了。</figcaption>
+    </figure>
+  </div>
+
+  <figure class="pad">
+    <img src="../img/zhTW/p-13-no-response.png" alt="患者端喝水格子下方顯示橘色叉號與無人回應">
+    <figcaption><strong>無人回應</strong>——送出後三分鐘沒有人按「已收到」。</figcaption>
+  </figure>
+
+  <p class="muted">「無人回應」不等於「沒送到」。呼叫很可能已經送到照顧者手機、警報也響了，只是他在睡覺或不在旁邊。對患者的意義是一樣的：<strong>這條路現在不通，需要換個方式求助</strong>。</p>
+
+  <div class="ok">
+    對一個沒辦法再問一次的人來說，<strong>知道自己有沒有被聽見</strong>跟呼叫本身一樣重要。狀態就寫在格子上，不必問任何人。
+  </div>
+
+  </div><!-- /patient-scope -->
+
+
+  <!-- ================================================================ -->
+  <!-- ======================= 第二章 照顧者端 ======================= -->
+  <!-- ================================================================ -->
+  <div class="section-head caregiver">
+    <h2 id="caregiver">第二章 · 照顧者端</h2>
+    <p class="who">照顧者隨身攜帶的那台，通常是手機。呼叫會在這裡響起來。</p>
+  </div>
+
+  <div class="caregiver-scope">
+
+  <h3 id="c1"><span class="step">1</span>勾選說明，允許藍牙</h3>
+
+  <p>跟患者端一樣：<strong>先勾選「我已了解上述說明」</strong>，角色卡片才會變成可以按。</p>
+
+  <div class="row">
+    <figure class="phone">
+      <img src="../img/zhTW/c-01-disclaimer.png" alt="照顧者端 iPhone 上的說明畫面，橘色文字提示請先確認上方說明">
+      <figcaption>沒勾選之前，卡片按不動。</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="../img/zhTW/c-02-bluetooth.png" alt="iPhone 上詢問是否允許 SideBell 尋找藍牙裝置">
+      <figcaption>勾選的那一刻跳出來。按<strong>「允許」</strong>。</figcaption>
+    </figure>
+  </div>
+
+
+  <h3 id="c2"><span class="step">2</span>選擇角色</h3>
+
+  <p>選<strong>「照顧者端」</strong>。</p>
+
+
+  <h3 id="c3"><span class="step">3</span>允許通知</h3>
+
+  <p>進入呼叫清單之後，系統會再問一次。<strong>照顧者端比患者端多這一個權限。</strong></p>
+
+  <figure class="phone">
+    <img src="../img/zhTW/c-03-notifications.png" alt="iPhone 上詢問是否允許 SideBell 傳送通知">
+    <figcaption>按<strong>「允許」</strong>。</figcaption>
+  </figure>
+
+  <div class="warn">
+    <strong>通知一定要允許。</strong>手機鎖著、放在口袋時，呼叫要靠通知才會顯示。不允許的話，只有 App 剛好開著才看得到呼叫。
+  </div>
+
+
+  <h3 id="c4"><span class="step">4</span>確認連上了</h3>
+
+  <div class="ok">
+    <strong>不用配對、不用輸入代碼、不用去 iOS 的「設定 → 藍牙」裡找 SideBell</strong>（那裡找不到，是正常的）。兩台 App 都開著、距離夠近，它們會自己連上。
+  </div>
+
+  <div class="row">
+    <figure class="phone">
+      <img src="../img/zhTW/c-04-disconnected.png" alt="照顧者端呼叫清單，上方橘色未連線">
+      <figcaption>連上之前</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="../img/zhTW/c-05-connected.png" alt="照顧者端呼叫清單，上方綠色已連線">
+      <figcaption>連上之後。通常幾秒內就會自己接上。</figcaption>
+    </figure>
+  </div>
+
+  <p>回頭看患者端，左上角也應該變綠。<strong>兩台都綠色才算真的通了。</strong>等了一分鐘還是橘色，看「<a href="#trouble">遇到問題</a>」。</p>
+
+
+  <h3 id="c5"><span class="step">5</span>收到呼叫時</h3>
+
+  <p>手機會<strong>響起警報，並唸出項目名稱</strong>，不用看螢幕也知道患者要什麼。</p>
+
+  <h4>手機沒在用的時候</h4>
+
+  <div class="row">
+    <figure class="phone">
+      <img src="../img/zhTW/c-10-lockscreen.png" alt="iPhone 鎖定畫面下方出現不舒服的通知，來源是 Joe iPad mini 7，狀態列有靜音圖示">
+      <figcaption>螢幕鎖著時，通知出現在鎖定畫面。</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="../img/zhTW/c-12-banner.png" alt="iPhone 主畫面上方出現不舒服的橫幅通知">
+      <figcaption>在別的畫面時，從上方以橫幅跳出來。</figcaption>
+    </figure>
+  </div>
+
+  <div class="ok">
+    <strong>手機轉靜音，SideBell 的警報還是會響。</strong><span class="muted">上面左圖的狀態列就有靜音圖示，而呼叫照樣進來。</span>
+  </div>
+
+  <h4>回應呼叫</h4>
+
+  <div class="row">
+    <figure class="phone">
+      <img src="../img/zhTW/c-06-call-received.png" alt="照顧者端收到喝水的呼叫，右側有藍色的已收到按鈕">
+      <figcaption>按藍色的<strong>「已收到」</strong>。</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="../img/zhTW/c-07-acknowledged.png" alt="按下已收到之後，變成綠色勾勾與時間">
+      <figcaption>患者端會同時看到「已確認」。</figcaption>
+    </figure>
+  </div>
+
+  <h4>清單上的樣子</h4>
+
+  <figure class="phone">
+    <img src="../img/zhTW/c-11-call-list.png" alt="照顧者端清單，由上到下是不舒服已收到、喝水無人回應、不舒服已收到，緊急項目左側有紅色警告圖示">
+    <figcaption>每則呼叫都帶著自己的狀態與時間。<strong>「不舒服」左邊有紅色的警告圖示</strong>，一眼就能跟其他項目分開。</figcaption>
+  </figure>
+
+  </div><!-- /caregiver-scope -->
+
+
+  <!-- ================================================= -->
+  <h2 id="rules">兩條規則</h2>
+
+  <div class="tablewrap">
+  <table class="rules">
+    <thead>
+      <tr>
+        <th></th>
+        <th>「不舒服」<br><span class="muted" style="font-weight:400;font-size:0.9em;">緊急呼叫</span></th>
+        <th>其他所有項目</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>照顧者端的警報</strong></td>
+        <td class="yes">重複響，直到有人按「已收到」或滿三分鐘</td>
+        <td>只響一次</td>
+      </tr>
+      <tr>
+        <td><strong>三分鐘沒人回應</strong></td>
+        <td class="yes">變成「無人回應」</td>
+        <td class="yes">一樣變成「無人回應」</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p><strong>重複響鈴只有「不舒服」有；三分鐘的期限，每一則呼叫都一樣。</strong>上面那張「無人回應」的截圖，格子就是「喝水」。</p>
+
+
+  <!-- ================================================= -->
+  <h2 id="trouble">遇到問題</h2>
+
+  <h3>一直顯示「未連線」</h3>
+
+  <ol>
+    <li><strong>兩台的 SideBell 都開著嗎？</strong>App 從多工畫面被滑掉就不會運作了。</li>
+    <li><strong>兩台的藍牙都開著嗎？</strong>看一下 iOS 控制中心。</li>
+    <li><strong>距離太遠？</strong>先把兩台放在一起確認能連上，再拉開找出這個家實際可用的範圍。</li>
+    <li><strong>兩台選成同一個角色了？</strong>都選「照顧者端」的話永遠連不上。到設定裡看「角色」那一列。</li>
+  </ol>
+
+  <h3>一直是「等待中」</h3>
+
+  <p>呼叫送出了，但照顧者還沒按「已收到」。滿三分鐘後會變成「無人回應」。</p>
+
+  <h3>不小心按到「不允許」</h3>
+
+  <p>權限只問一次，之後 App 裡不會再跳出來。到 iOS 的「設定」往下滑找到「SideBell」，把「藍牙」打開；照顧者端還要開「通知」。</p>
+
+  <h3>換裝置或交換角色</h3>
+
+  <p>到設定裡按紅色的「切換角色」。<strong>切換角色會停止目前的連線</strong>，換完兩台都要重新確認。</p>
+
+  <figure class="phone">
+    <img src="../img/zhTW/c-08-settings.png" alt="照顧者端設定畫面，有角色、支持開發者、切換角色三個項目">
+    <figcaption>照顧者端的設定。患者端沒有「支持開發者」——患者端完全沒有跟付費有關的東西。</figcaption>
+  </figure>
+
+
+  <!-- ================================================= -->
+  <h2>還有問題？</h2>
+
+  <p>來信 <a href="mailto:shinren.pan@gmail.com">shinren.pan@gmail.com</a>，或看 <a href="https://github.com/shinrenpan/SideBell">GitHub</a> 上的原始碼。App 內的「支持開發者」是選用的贊助，<strong>不解鎖任何功能</strong>。</p>
+
+  <div class="warn">
+    SideBell 不能取代緊急醫療警報服務，緊急狀況請撥打 119。開始依賴它之前，請和你照顧的人一起，在實際會使用的地方先測試過。
+  </div>
+
+  <footer>
+    © 2026 Shinren Pan · SideBell 隨身鈴 ·
+    <a href="../../">首頁</a> ·
+    <a href="../../privacy/">隱私權政策</a>
+  </footer>
+
+</div>
+</body>
+</html>
