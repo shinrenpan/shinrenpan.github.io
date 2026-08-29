@@ -145,6 +145,7 @@
           <li><a href="#p3">The main screen</a></li>
           <li><a href="#p4">Add the items this home needs</a></li>
           <li><a href="#p5">After a cell is tapped</a></li>
+          <li><a href="#p6">Leaving it running beside the bed</a></li>
         </ul>
       </li>
       <li>
@@ -325,6 +326,39 @@
 
   <div class="ok">
     For someone who cannot ask a second time, <strong>knowing whether they were heard</strong> matters as much as the call itself. The state is written on the cell; nobody has to be asked.
+  </div>
+
+
+  <h3 id="p6"><span class="step">6</span>Leaving it running beside the bed</h3>
+
+  <p>Once everything works, the bedside device stays on. Three things are worth doing first.</p>
+
+  <h4>Keep it plugged in</h4>
+
+  <p>A flat battery means the whole system is offline, and the patient cannot go and charge it. <strong>Keep the bedside device on a charger permanently</strong> rather than treating it as a tablet someone picks up and carries off.</p>
+
+  <h4>Turn on Guided Access</h4>
+
+  <p>This locks the iPad into SideBell, so the patient cannot leave the screen by accident.</p>
+
+  <ol>
+    <li>iOS <strong>Settings → Accessibility → Guided Access</strong>, switch it on</li>
+    <li>Go back to SideBell and <strong>triple-click the side button</strong> (or the Home button)</li>
+    <li>Tap <strong>Start</strong></li>
+  </ol>
+
+  <p>Triple-click again and enter the passcode to end it.</p>
+
+  <div class="warn">
+    <strong>The app cannot turn this on for you</strong> — iOS provides no API for it, so it has to be set on the device by hand. That is exactly why it belongs in a guide rather than as a switch inside the app.
+  </div>
+
+  <h4>Do not swipe the app away</h4>
+
+  <p>Swiping SideBell out of the app switcher stops it working entirely, <strong>and the patient has no way to reopen it</strong>. That is an iOS rule, not a flaw in this app. With Guided Access on, it essentially cannot happen by accident.</p>
+
+  <div class="ok">
+    <strong>You do not need to change Auto-Lock.</strong> The patient side disables it automatically — if the screen went dark, a patient using only Eye Tracking <strong>could not wake the device</strong> (eye tracking does not work on the lock screen). The whole system would be offline with no way for them to bring it back.
   </div>
 
   </div><!-- /patient-scope -->
